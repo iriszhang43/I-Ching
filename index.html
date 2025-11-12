@@ -1,0 +1,2453 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="style.css">
+
+    <title>I Ching</title>
+</head>
+<style>
+    body {
+        overflow: hidden;
+    }
+
+    .container {
+        max-width: 1200px;
+        padding: 50px;
+    }
+
+    .hero {
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 40px;
+        padding: 200px 150px 30px 150px;
+    }
+
+    .title {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .number {
+        font-size: 48px;
+    }
+
+    .name {
+        font-size: 48px;
+        padding-left: 30px;
+    }
+
+
+    .grid {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+    }
+
+    .content {
+        margin-top: -20px;
+    }
+
+    .diagram img {
+        width: 150px;
+        height: auto;
+    }
+
+    .learnmore {
+        font-size: 36px;
+        text-transform: uppercase;
+    }
+
+    .meta {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .section {
+        padding-bottom: 15px;
+    }
+
+    .arrows {
+        display: flex;
+        flex-direction: column;
+        font-size: 48px;
+        line-height: 0;
+    }
+
+    .arrow {
+        opacity: 0.3;
+        transition: opacity 0.2s ease;
+    }
+
+    .arrow:hover {
+        opacity: 1;
+    }
+
+    .up {
+        margin-top: 40px;
+    }
+
+    .down {
+        rotate: 180deg;
+        margin-top: 60px;
+    }
+
+    .wheel {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 30vw;
+        height: 100vh;
+        display: grid;
+        place-items: center;
+        z-index: 1000;
+        pointer-events: auto;
+        background: transparent;
+    }
+
+    .wheel-arrow {
+        position: absolute;
+        top: 50%;
+        left: 20%;
+        transform: translate(-50%, -50%)rotate(90deg);
+        font-size: 28px;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    .circular {
+        --_items: 64;
+        --angle: 0deg;
+        all: unset;
+        display: grid;
+        place-content: center;
+        aspect-ratio: 1 / 1;
+        container-type: inline-size;
+
+        transform: rotate(var(--angle));
+        transform-origin: center center;
+
+        will-change: transform;
+
+        width: 100vh;
+        height: 100vh;
+    }
+
+    .circular,
+    .circular * {
+        box-sizing: border-box;
+    }
+
+    .circular>.item {
+        list-style: none;
+        grid-area: 1 / -1;
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        align-items: center;
+
+        transform-origin: center center;
+        width: 1050px;
+        aspect-ratio: 1 / calc(2 * tan(180deg / var(--_items)));
+        rotate: calc(360deg / var(--_items) * (var(--i) - 1));
+
+        opacity: .3;
+        transition: opacity .2s ease;
+    }
+
+    .circular>.item.active {
+        opacity: 1;
+    }
+
+    .circular .label {
+        writing-mode: vertical-rl;
+        text-align: center;
+        inline-size: 2.2em;
+        flex: 0 0 2.2em;
+    }
+
+    .circular .icon {
+        max-width: 30px;
+        height: auto;
+        flex: 0 0 30px;
+    }
+
+    .circular .index {
+        margin-left: 1.2rem;
+        text-align: left;
+        inline-size: 3ch;
+        flex: 0 0 3ch;
+
+    }
+
+    .hex {
+        display: none;
+    }
+
+    .hex.active {
+        display: block;
+    }
+
+    @media (max-width: 980px) {
+        .hero {
+            grid-template-columns: 1fr
+        }
+    }
+
+    footer {
+        position: fixed;
+    }
+</style>
+
+<body>
+    <header class="container">
+        <nav class="topnav">
+            <a class="pageheader" href="">I Ching</a>
+            <div class="navlinks">
+                <a href="#about-panel">About</a>
+                <a href="howto.html">How To</a>
+                <a href="hexagram.html">Hexagram</a>
+                <a href="coin.html">Coin</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container hero">
+        <!-- Left side -->
+        <section class="hex-panels">
+            <!-- 01 -->
+            <article id="hx-01" class="hex active">
+                <div class="title">
+                    <p class="number">01.</p>
+                    <p class="name">The Creative</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-64">^</a><a class="arrow down" href="#hx-02">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/1.png" alt="1"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">乾</p>
+                                <p>Qian</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Heaven</p>
+                                <p>Below: Heaven</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-01">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 02 -->
+            <article id="hx-02" class="hex">
+                <div class="title">
+                    <p class="number">02.</p>
+                    <p class="name">The Receptive</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-01">^</a><a class="arrow down" href="#hx-03">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/2.png" alt="2"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">坤</p>
+                                <p>Kun</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Earth</p>
+                                <p>Below: Earth</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-02">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 03 -->
+            <article id="hx-03" class="hex">
+                <div class="title">
+                    <p class="number">03.</p>
+                    <p class="name">Difficulty at the Beginning</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-02">^</a><a class="arrow down" href="#hx-04">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/3.png" alt="3"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">屯</p>
+                                <p>Zhun</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Water</p>
+                                <p>Below: Thunder</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-03">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 04 -->
+            <article id="hx-04" class="hex">
+                <div class="title">
+                    <p class="number">04.</p>
+                    <p class="name">Youthful Folly</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-03">^</a><a class="arrow down" href="#hx-05">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/4.png" alt="4"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">蒙</p>
+                                <p>Meng</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Mountain</p>
+                                <p>Below: Water</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-04">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 05 -->
+            <article id="hx-05" class="hex">
+                <div class="title">
+                    <p class="number">05.</p>
+                    <p class="name">Waiting</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-04">^</a><a class="arrow down" href="#hx-06">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/5.png" alt="5"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">需</p>
+                                <p>Xu</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Water</p>
+                                <p>Below: Heaven</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-05">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 06 -->
+            <article id="hx-06" class="hex">
+                <div class="title">
+                    <p class="number">06.</p>
+                    <p class="name">Conflict</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-05">^</a><a class="arrow down" href="#hx-07">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/6.png" alt="6"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">訟</p>
+                                <p>Song</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Heaven</p>
+                                <p>Below: Water</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-06">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 07 -->
+            <article id="hx-07" class="hex">
+                <div class="title">
+                    <p class="number">07.</p>
+                    <p class="name">The Army</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-06">^</a><a class="arrow down" href="#hx-08">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/7.png" alt="7"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">師</p>
+                                <p>Shi</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Water</p>
+                                <p>Below: Earth</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-07">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 08 -->
+            <article id="hx-08" class="hex">
+                <div class="title">
+                    <p class="number">08.</p>
+                    <p class="name">Holding Together</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-07">^</a><a class="arrow down" href="#hx-09">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/8.png" alt="8"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">比</p>
+                                <p>Bi</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Earth</p>
+                                <p>Below: Water</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-08">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 09 -->
+            <article id="hx-09" class="hex">
+                <div class="title">
+                    <p class="number">09.</p>
+                    <p class="name">The Taming Power of the Small</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-08">^</a><a class="arrow down" href="#hx-10">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/9.png" alt="9"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">小畜</p>
+                                <p>Xiao Xu</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Wind</p>
+                                <p>Below: Heaven</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-09">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 10 -->
+            <article id="hx-10" class="hex">
+                <div class="title">
+                    <p class="number">10.</p>
+                    <p class="name">Treading</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-09">^</a><a class="arrow down" href="#hx-11">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/10.png" alt="10"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">履</p>
+                                <p>Lu</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Heaven</p>
+                                <p>Below: Lake</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-10">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 11 -->
+            <article id="hx-11" class="hex">
+                <div class="title">
+                    <p class="number">11.</p>
+                    <p class="name">Peace</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-10">^</a><a class="arrow down" href="#hx-12">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/11.png" alt="11"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">泰</p>
+                                <p>Tai</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Heaven</p>
+                                <p>Below: Earth</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-11">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 12 -->
+            <article id="hx-12" class="hex">
+                <div class="title">
+                    <p class="number">12.</p>
+                    <p class="name">Standstill</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-11">^</a><a class="arrow down" href="#hx-13">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/12.png" alt="12"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">否</p>
+                                <p>Pi</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Earth</p>
+                                <p>Below: Heaven</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-12">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 13 -->
+            <article id="hx-13" class="hex">
+                <div class="title">
+                    <p class="number">13.</p>
+                    <p class="name">Fellowship with Men</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-12">^</a><a class="arrow down" href="#hx-14">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/13.png" alt="13"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">同人</p>
+                                <p>Tong Ren</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Heaven</p>
+                                <p>Below: Fire</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-13">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 14 -->
+            <article id="hx-14" class="hex">
+                <div class="title">
+                    <p class="number">14.</p>
+                    <p class="name">Possession in Great Measure</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-13">^</a><a class="arrow down" href="#hx-15">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/14.png" alt="14"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">大有</p>
+                                <p>Da You</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Fire</p>
+                                <p>Below: Heaven</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-14">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 15 -->
+            <article id="hx-15" class="hex">
+                <div class="title">
+                    <p class="number">15.</p>
+                    <p class="name">Modesty</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-14">^</a><a class="arrow down" href="#hx-16">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/15.png" alt="15"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">謙</p>
+                                <p>Qian</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Earth</p>
+                                <p>Below: Mountain</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-15">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 16 -->
+            <article id="hx-16" class="hex">
+                <div class="title">
+                    <p class="number">16.</p>
+                    <p class="name">Enthusiasm</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-15">^</a><a class="arrow down" href="#hx-17">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/16.png" alt="16"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">豫</p>
+                                <p>Yu</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Thunder</p>
+                                <p>Below: Earth</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-16">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 17 -->
+            <article id="hx-17" class="hex">
+                <div class="title">
+                    <p class="number">17.</p>
+                    <p class="name">Following</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-16">^</a><a class="arrow down" href="#hx-18">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/17.png" alt="17"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">隨</p>
+                                <p>Sui</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Lake</p>
+                                <p>Below: Thunder</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-17">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 18 -->
+            <article id="hx-18" class="hex">
+                <div class="title">
+                    <p class="number">18.</p>
+                    <p class="name">Work on What Has Been Spoiled</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-17">^</a><a class="arrow down" href="#hx-19">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/18.png" alt="18"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">蠱</p>
+                                <p>Gu</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Mountain</p>
+                                <p>Below: Wind</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-18">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 19 -->
+            <article id="hx-19" class="hex">
+                <div class="title">
+                    <p class="number">19.</p>
+                    <p class="name">Approach</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-18">^</a><a class="arrow down" href="#hx-20">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/19.png" alt="19"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">臨</p>
+                                <p>Lin</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Earth</p>
+                                <p>Below: Lake</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-19">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 20 -->
+            <article id="hx-20" class="hex">
+                <div class="title">
+                    <p class="number">20.</p>
+                    <p class="name">Contemplation</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-19">^</a><a class="arrow down" href="#hx-21">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/20.png" alt="20"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">觀</p>
+                                <p>Guan</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Wind</p>
+                                <p>Below: Earth</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-20">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 21 -->
+            <article id="hx-21" class="hex">
+                <div class="title">
+                    <p class="number">21.</p>
+                    <p class="name">Biting Through</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-20">^</a><a class="arrow down" href="#hx-22">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/21.png" alt="21"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">噬嗑</p>
+                                <p>Shi He</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Fire</p>
+                                <p>Below: Thunder</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-21">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 22 -->
+            <article id="hx-22" class="hex">
+                <div class="title">
+                    <p class="number">22.</p>
+                    <p class="name">Grace</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-21">^</a><a class="arrow down" href="#hx-23">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/22.png" alt="22"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">賁</p>
+                                <p>Bi</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Mountain</p>
+                                <p>Below: Fire</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-22">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 23 -->
+            <article id="hx-23" class="hex">
+                <div class="title">
+                    <p class="number">23.</p>
+                    <p class="name">Splitting Apart</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-22">^</a><a class="arrow down" href="#hx-24">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/23.png" alt="23"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">剝</p>
+                                <p>Bo</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Mountain</p>
+                                <p>Below: Earth</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-23">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 24 -->
+            <article id="hx-24" class="hex">
+                <div class="title">
+                    <p class="number">24.</p>
+                    <p class="name">Return</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-23">^</a><a class="arrow down" href="#hx-25">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/24.png" alt="24"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">復</p>
+                                <p>Fu</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Earth</p>
+                                <p>Below: Thunder</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-24">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 25 -->
+            <article id="hx-25" class="hex">
+                <div class="title">
+                    <p class="number">25.</p>
+                    <p class="name">Innocence</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-24">^</a><a class="arrow down" href="#hx-26">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/25.png" alt="25"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">無妄</p>
+                                <p>Wu Wang</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Heaven</p>
+                                <p>Below: Thunder</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-25">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 26 -->
+            <article id="hx-26" class="hex">
+                <div class="title">
+                    <p class="number">26.</p>
+                    <p class="name">Taming Power of the Great</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-25">^</a><a class="arrow down" href="#hx-27">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/26.png" alt="26"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">大畜</p>
+                                <p>Da Xu</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Mountain</p>
+                                <p>Below: Heaven</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-26">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 27 -->
+            <article id="hx-27" class="hex">
+                <div class="title">
+                    <p class="number">27.</p>
+                    <p class="name">Nourishing</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-26">^</a><a class="arrow down" href="#hx-28">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/27.png" alt="27"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">頤</p>
+                                <p>Yi</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Mountain</p>
+                                <p>Below: Thunder</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-27">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 28 -->
+            <article id="hx-28" class="hex">
+                <div class="title">
+                    <p class="number">28.</p>
+                    <p class="name">Great Preponderance</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-27">^</a><a class="arrow down" href="#hx-29">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/28.png" alt="28"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">大過</p>
+                                <p>Da Guo</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Lake</p>
+                                <p>Below: Wind</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-28">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 29 -->
+            <article id="hx-29" class="hex">
+                <div class="title">
+                    <p class="number">29.</p>
+                    <p class="name">The Abysmal</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-28">^</a><a class="arrow down" href="#hx-30">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/29.png" alt="29"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">坎</p>
+                                <p>Kan</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Water</p>
+                                <p>Below: Water</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-29">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 30 -->
+            <article id="hx-30" class="hex">
+                <div class="title">
+                    <p class="number">30.</p>
+                    <p class="name">The Clinging</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-29">^</a><a class="arrow down" href="#hx-31">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/30.png" alt="30"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">離</p>
+                                <p>Li</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Fire</p>
+                                <p>Below: Fire</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-30">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 31 -->
+            <article id="hx-31" class="hex">
+                <div class="title">
+                    <p class="number">31.</p>
+                    <p class="name">Influence</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-30">^</a><a class="arrow down" href="#hx-32">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/31.png" alt="31"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">咸</p>
+                                <p>Xian</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Lake</p>
+                                <p>Below: Mountain</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-31">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 32 -->
+            <article id="hx-32" class="hex">
+                <div class="title">
+                    <p class="number">32.</p>
+                    <p class="name">Duration</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-31">^</a><a class="arrow down" href="#hx-33">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/32.png" alt="32"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">恆</p>
+                                <p>Heng</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Thunder</p>
+                                <p>Below: Wind</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-32">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 33 -->
+            <article id="hx-33" class="hex">
+                <div class="title">
+                    <p class="number">33.</p>
+                    <p class="name">Retreat</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-32">^</a><a class="arrow down" href="#hx-34">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/33.png" alt="33"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">遯</p>
+                                <p>Dun</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Heaven</p>
+                                <p>Below: Mountain</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-33">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 34 -->
+            <article id="hx-34" class="hex">
+                <div class="title">
+                    <p class="number">34.</p>
+                    <p class="name">Great Power</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-33">^</a><a class="arrow down" href="#hx-35">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/34.png" alt="34"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">大壯</p>
+                                <p>Da Zhuang</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Thunder</p>
+                                <p>Below: Heaven</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-34">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 35 -->
+            <article id="hx-35" class="hex">
+                <div class="title">
+                    <p class="number">35.</p>
+                    <p class="name">Progress</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-34">^</a><a class="arrow down" href="#hx-36">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/35.png" alt="35"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">晉</p>
+                                <p>Jin</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Fire</p>
+                                <p>Below: Earth</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-35">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 36 -->
+            <article id="hx-36" class="hex">
+                <div class="title">
+                    <p class="number">36.</p>
+                    <p class="name">Darkening of the Light</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-35">^</a><a class="arrow down" href="#hx-37">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/36.png" alt="36"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">明夷</p>
+                                <p>Ming Yi</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Earth</p>
+                                <p>Below: Fire</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-36">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 37 -->
+            <article id="hx-37" class="hex">
+                <div class="title">
+                    <p class="number">37.</p>
+                    <p class="name">The Family</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-36">^</a><a class="arrow down" href="#hx-38">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/37.png" alt="37"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">家人</p>
+                                <p>Jia Ren</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Wind</p>
+                                <p>Below: Fire</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-37">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 38 -->
+            <article id="hx-38" class="hex">
+                <div class="title">
+                    <p class="number">38.</p>
+                    <p class="name">Opposition</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-37">^</a><a class="arrow down" href="#hx-39">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/38.png" alt="38"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">睽</p>
+                                <p>Kui</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Fire</p>
+                                <p>Below: Lake</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-38">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 39 -->
+            <article id="hx-39" class="hex">
+                <div class="title">
+                    <p class="number">39.</p>
+                    <p class="name">Obstruction</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-38">^</a><a class="arrow down" href="#hx-40">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/39.png" alt="39"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">蹇</p>
+                                <p>Jian</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Water</p>
+                                <p>Below: Mountain</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-39">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 40 -->
+            <article id="hx-40" class="hex">
+                <div class="title">
+                    <p class="number">40.</p>
+                    <p class="name">Deliverance</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-39">^</a><a class="arrow down" href="#hx-41">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/40.png" alt="40"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">解</p>
+                                <p>Xie</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Thunder</p>
+                                <p>Below: Water</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-40">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 41 -->
+            <article id="hx-41" class="hex">
+                <div class="title">
+                    <p class="number">41.</p>
+                    <p class="name">Decrease</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-40">^</a><a class="arrow down" href="#hx-42">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/41.png" alt="41"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">損</p>
+                                <p>Sun</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Mountain</p>
+                                <p>Below: Lake</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-41">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 42 -->
+            <article id="hx-42" class="hex">
+                <div class="title">
+                    <p class="number">42.</p>
+                    <p class="name">Increase</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-41">^</a><a class="arrow down" href="#hx-43">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/42.png" alt="42"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">益</p>
+                                <p>Yi</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Wind</p>
+                                <p>Below: Thunder</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-42">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 43 -->
+            <article id="hx-43" class="hex">
+                <div class="title">
+                    <p class="number">43.</p>
+                    <p class="name">Breakthrough</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-42">^</a><a class="arrow down" href="#hx-44">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/43.png" alt="43"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">夬</p>
+                                <p>Guai</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Lake</p>
+                                <p>Below: Heaven</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-43">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 44 -->
+            <article id="hx-44" class="hex">
+                <div class="title">
+                    <p class="number">44.</p>
+                    <p class="name">Coming to Meet</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-43">^</a><a class="arrow down" href="#hx-45">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/44.png" alt="44"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">姤</p>
+                                <p>Gou</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Heaven</p>
+                                <p>Below: Wind</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-44">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 45 -->
+            <article id="hx-45" class="hex">
+                <div class="title">
+                    <p class="number">45.</p>
+                    <p class="name">Gathering Together</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-44">^</a><a class="arrow down" href="#hx-46">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/45.png" alt="45"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">萃</p>
+                                <p>Cui</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Lake</p>
+                                <p>Below: Earth</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-45">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 46 -->
+            <article id="hx-46" class="hex">
+                <div class="title">
+                    <p class="number">46.</p>
+                    <p class="name">Pushing Upward</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-45">^</a><a class="arrow down" href="#hx-47">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/46.png" alt="46"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">升</p>
+                                <p>Sheng</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Earth</p>
+                                <p>Below: Wind</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-46">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 47 -->
+            <article id="hx-47" class="hex">
+                <div class="title">
+                    <p class="number">47.</p>
+                    <p class="name">Oppression</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-46">^</a><a class="arrow down" href="#hx-48">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/47.png" alt="47"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">困</p>
+                                <p>Kun</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Lake</p>
+                                <p>Below: Water</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-47">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 48 -->
+            <article id="hx-48" class="hex">
+                <div class="title">
+                    <p class="number">48.</p>
+                    <p class="name">The Well</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-47">^</a><a class="arrow down" href="#hx-49">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/48.png" alt="48"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">井</p>
+                                <p>Jing</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Water</p>
+                                <p>Below: Wind</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-48">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 49 -->
+            <article id="hx-49" class="hex">
+                <div class="title">
+                    <p class="number">49.</p>
+                    <p class="name">Revolution</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-48">^</a><a class="arrow down" href="#hx-50">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/49.png" alt="49"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">革</p>
+                                <p>Ge</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Lake</p>
+                                <p>Below: Fire</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-49">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 50 -->
+            <article id="hx-50" class="hex">
+                <div class="title">
+                    <p class="number">50.</p>
+                    <p class="name">The Cauldron</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-49">^</a><a class="arrow down" href="#hx-51">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/50.png" alt="50"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">鼎</p>
+                                <p>Ding</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Fire</p>
+                                <p>Below: Wind</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-50">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 51 -->
+            <article id="hx-51" class="hex">
+                <div class="title">
+                    <p class="number">51.</p>
+                    <p class="name">The Arousing</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-50">^</a><a class="arrow down" href="#hx-52">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/51.png" alt="51"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">震</p>
+                                <p>Zhen</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Thunder</p>
+                                <p>Below: Thunder</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-51">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 52 -->
+            <article id="hx-52" class="hex">
+                <div class="title">
+                    <p class="number">52.</p>
+                    <p class="name">Keeping Still</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-51">^</a><a class="arrow down" href="#hx-53">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/52.png" alt="52"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">艮</p>
+                                <p>Gen</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Mountain</p>
+                                <p>Below: Mountain</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-52">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 53 -->
+            <article id="hx-53" class="hex">
+                <div class="title">
+                    <p class="number">53.</p>
+                    <p class="name">Development</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-52">^</a><a class="arrow down" href="#hx-54">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/53.png" alt="53"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">漸</p>
+                                <p>Jian</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Wind</p>
+                                <p>Below: Mountain</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-53">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 54 -->
+            <article id="hx-54" class="hex">
+                <div class="title">
+                    <p class="number">54.</p>
+                    <p class="name">The Marrying Maiden</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-53">^</a><a class="arrow down" href="#hx-55">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/54.png" alt="54"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">歸妹</p>
+                                <p>Gui Mei</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Thunder</p>
+                                <p>Below: Lake</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-54">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 55 -->
+            <article id="hx-55" class="hex">
+                <div class="title">
+                    <p class="number">55.</p>
+                    <p class="name">Abundance</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-54">^</a><a class="arrow down" href="#hx-56">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/55.png" alt="55"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">豐</p>
+                                <p>Feng</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Thunder</p>
+                                <p>Below: Fire</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-55">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 56 -->
+            <article id="hx-56" class="hex">
+                <div class="title">
+                    <p class="number">56.</p>
+                    <p class="name">The Wanderer</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-55">^</a><a class="arrow down" href="#hx-57">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/56.png" alt="56"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">旅</p>
+                                <p>Lü</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Fire</p>
+                                <p>Below: Mountain</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-56">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 57 -->
+            <article id="hx-57" class="hex">
+                <div class="title">
+                    <p class="number">57.</p>
+                    <p class="name">The Gentle</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-56">^</a><a class="arrow down" href="#hx-58">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/57.png" alt="57"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">巽</p>
+                                <p>Xun</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Wind</p>
+                                <p>Below: Wind</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-57">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 58 -->
+            <article id="hx-58" class="hex">
+                <div class="title">
+                    <p class="number">58.</p>
+                    <p class="name">The Joyous</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-57">^</a><a class="arrow down" href="#hx-59">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/58.png" alt="58"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">兌</p>
+                                <p>Dui</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Lake</p>
+                                <p>Below: Lake</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-58">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 59 -->
+            <article id="hx-59" class="hex">
+                <div class="title">
+                    <p class="number">59.</p>
+                    <p class="name">Dispersion</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-58">^</a><a class="arrow down" href="#hx-60">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/59.png" alt="59"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">渙</p>
+                                <p>Huan</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Wind</p>
+                                <p>Below: Water</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-59">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 60 -->
+            <article id="hx-60" class="hex">
+                <div class="title">
+                    <p class="number">60.</p>
+                    <p class="name">Limitation</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-59">^</a><a class="arrow down" href="#hx-61">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/60.png" alt="60"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">節</p>
+                                <p>Jie</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Water</p>
+                                <p>Below: Lake</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-60">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 61 -->
+            <article id="hx-61" class="hex">
+                <div class="title">
+                    <p class="number">61.</p>
+                    <p class="name">Inner Truth</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-60">^</a><a class="arrow down" href="#hx-62">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/61.png" alt="61"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">中孚</p>
+                                <p>Zhong Fu</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Wind</p>
+                                <p>Below: Lake</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-61">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 62 -->
+            <article id="hx-62" class="hex">
+                <div class="title">
+                    <p class="number">62.</p>
+                    <p class="name">Preponderance of the Small</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-61">^</a><a class="arrow down" href="#hx-63">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/62.png" alt="62"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">小過</p>
+                                <p>Xiao Guo</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Thunder</p>
+                                <p>Below: Mountain</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-62">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 63 -->
+            <article id="hx-63" class="hex">
+                <div class="title">
+                    <p class="number">63.</p>
+                    <p class="name">After Completion</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-62">^</a><a class="arrow down" href="#hx-64">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/63.png" alt="63"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">既濟</p>
+                                <p>Ji Ji</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Water</p>
+                                <p>Below: Fire</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-63">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 64 -->
+            <article id="hx-64" class="hex">
+                <div class="title">
+                    <p class="number">64.</p>
+                    <p class="name">Before Completion</p>
+                </div>
+                <div class="grid">
+                    <div class="arrows"><a class="arrow up" href="#hx-63">^</a><a class="arrow down" href="#hx-01">^</a>
+                    </div>
+                    <div class="diagram"><img src="64 hexagram icon/64.png" alt="64"></div>
+                    <div class="content">
+                        <div class="meta">
+                            <div class="section">
+                                <p class="chinese">未濟</p>
+                                <p>Wei Ji</p>
+                            </div>
+                            <div class="section">
+                                <p>Above: Fire</p>
+                                <p>Below: Water</p>
+                            </div>
+                            <p class="learnmore"><a href="hexagram.html#hex-64">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+
+        </section>
+        <!-- Right side -->
+        <aside class="wheel" id="wheel">
+            <div class="wheel-arrow" aria-hidden="true">▼</div>
+
+            <ul class="circular" id="wheelList">
+                <li class="item" style="--i: 1;">
+                    <p class="chinese label">乾</p>
+                    <img class="icon" src="64 Hexagram Icon/1.png" alt="1">
+                    <p class="index">01</p>
+                </li>
+                <li class="item" style="--i: 2;">
+                    <p class="chinese label">坤</p>
+                    <img class="icon" src="64 Hexagram Icon/2.png" alt="2">
+                    <p class="index">02</p>
+                </li>
+                <li class="item" style="--i: 3;">
+                    <p class="chinese label">屯</p>
+                    <img class="icon" src="64 Hexagram Icon/3.png" alt="3">
+                    <p class="index">03</p>
+                </li>
+                <li class="item" style="--i: 4;">
+                    <p class="chinese label">蒙</p>
+                    <img class="icon" src="64 Hexagram Icon/4.png" alt="4">
+                    <p class="index">04</p>
+                </li>
+                <li class="item" style="--i: 5;">
+                    <p class="chinese label">需</p>
+                    <img class="icon" src="64 Hexagram Icon/5.png" alt="5">
+                    <p class="index">05</p>
+                </li>
+                <li class="item" style="--i: 6;">
+                    <p class="chinese label">訟</p>
+                    <img class="icon" src="64 Hexagram Icon/6.png" alt="6">
+                    <p class="index">06</p>
+                </li>
+                <li class="item" style="--i: 7;">
+                    <p class="chinese label">師</p>
+                    <img class="icon" src="64 Hexagram Icon/7.png" alt="7">
+                    <p class="index">07</p>
+                </li>
+                <li class="item" style="--i: 8;">
+                    <p class="chinese label">比</p>
+                    <img class="icon" src="64 Hexagram Icon/8.png" alt="8">
+                    <p class="index">08</p>
+                </li>
+                <li class="item" style="--i: 9;">
+                    <p class="chinese label">小畜</p>
+                    <img class="icon" src="64 Hexagram Icon/9.png" alt="9">
+                    <p class="index">09</p>
+                </li>
+                <li class="item" style="--i: 10;">
+                    <p class="chinese label">履</p>
+                    <img class="icon" src="64 Hexagram Icon/10.png" alt="10">
+                    <p class="index">10</p>
+                </li>
+                <li class="item" style="--i: 11;">
+                    <p class="chinese label">泰</p>
+                    <img class="icon" src="64 Hexagram Icon/11.png" alt="11">
+                    <p class="index">11</p>
+                </li>
+                <li class="item" style="--i: 12;">
+                    <p class="chinese label">否</p>
+                    <img class="icon" src="64 Hexagram Icon/12.png" alt="12">
+                    <p class="index">12</p>
+                </li>
+                <li class="item" style="--i: 13;">
+                    <p class="chinese label">同人</p>
+                    <img class="icon" src="64 Hexagram Icon/13.png" alt="13">
+                    <p class="index">13</p>
+                </li>
+                <li class="item" style="--i: 14;">
+                    <p class="chinese label">大有</p>
+                    <img class="icon" src="64 Hexagram Icon/14.png" alt="14">
+                    <p class="index">14</p>
+                </li>
+                <li class="item" style="--i: 15;">
+                    <p class="chinese label">謙</p>
+                    <img class="icon" src="64 Hexagram Icon/15.png" alt="15">
+                    <p class="index">15</p>
+                </li>
+                <li class="item" style="--i: 16;">
+                    <p class="chinese label">豫</p>
+                    <img class="icon" src="64 Hexagram Icon/16.png" alt="16">
+                    <p class="index">16</p>
+                </li>
+                <li class="item" style="--i: 17;">
+                    <p class="chinese label">隨</p>
+                    <img class="icon" src="64 Hexagram Icon/17.png" alt="17">
+                    <p class="index">17</p>
+                </li>
+                <li class="item" style="--i: 18;">
+                    <p class="chinese label">蠱</p>
+                    <img class="icon" src="64 Hexagram Icon/18.png" alt="18">
+                    <p class="index">18</p>
+                </li>
+                <li class="item" style="--i: 19;">
+                    <p class="chinese label">臨</p>
+                    <img class="icon" src="64 Hexagram Icon/19.png" alt="19">
+                    <p class="index">19</p>
+                </li>
+                <li class="item" style="--i: 20;">
+                    <p class="chinese label">觀</p>
+                    <img class="icon" src="64 Hexagram Icon/20.png" alt="20">
+                    <p class="index">20</p>
+                </li>
+                <li class="item" style="--i: 21;">
+                    <p class="chinese label">噬嗑</p>
+                    <img class="icon" src="64 Hexagram Icon/21.png" alt="21">
+                    <p class="index">21</p>
+                </li>
+                <li class="item" style="--i: 22;">
+                    <p class="chinese label">賁</p>
+                    <img class="icon" src="64 Hexagram Icon/22.png" alt="22">
+                    <p class="index">22</p>
+                </li>
+                <li class="item" style="--i: 23;">
+                    <p class="chinese label">剝</p>
+                    <img class="icon" src="64 Hexagram Icon/23.png" alt="23">
+                    <p class="index">23</p>
+                </li>
+                <li class="item" style="--i: 24;">
+                    <p class="chinese label">復</p>
+                    <img class="icon" src="64 Hexagram Icon/24.png" alt="24">
+                    <p class="index">24</p>
+                </li>
+                <li class="item" style="--i: 25;">
+                    <p class="chinese label">無妄</p>
+                    <img class="icon" src="64 Hexagram Icon/25.png" alt="25">
+                    <p class="index">25</p>
+                </li>
+                <li class="item" style="--i: 26;">
+                    <p class="chinese label">大畜</p>
+                    <img class="icon" src="64 Hexagram Icon/26.png" alt="26">
+                    <p class="index">26</p>
+                </li>
+                <li class="item" style="--i: 27;">
+                    <p class="chinese label">頤</p>
+                    <img class="icon" src="64 Hexagram Icon/27.png" alt="27">
+                    <p class="index">27</p>
+                </li>
+                <li class="item" style="--i: 28;">
+                    <p class="chinese label">大過</p>
+                    <img class="icon" src="64 Hexagram Icon/28.png" alt="28">
+                    <p class="index">28</p>
+                </li>
+                <li class="item" style="--i: 29;">
+                    <p class="chinese label">坎</p>
+                    <img class="icon" src="64 Hexagram Icon/29.png" alt="29">
+                    <p class="index">29</p>
+                </li>
+                <li class="item" style="--i: 30;">
+                    <p class="chinese label">離</p>
+                    <img class="icon" src="64 Hexagram Icon/30.png" alt="30">
+                    <p class="index">30</p>
+                </li>
+                <li class="item" style="--i: 31;">
+                    <p class="chinese label">咸</p>
+                    <img class="icon" src="64 Hexagram Icon/31.png" alt="31">
+                    <p class="index">31</p>
+                </li>
+                <li class="item" style="--i: 32;">
+                    <p class="chinese label">恆</p>
+                    <img class="icon" src="64 Hexagram Icon/32.png" alt="32">
+                    <p class="index">32</p>
+                </li>
+                <li class="item" style="--i: 33;">
+                    <p class="chinese label">遯</p>
+                    <img class="icon" src="64 Hexagram Icon/33.png" alt="33">
+                    <p class="index">33</p>
+                </li>
+                <li class="item" style="--i: 34;">
+                    <p class="chinese label">大壯</p>
+                    <img class="icon" src="64 Hexagram Icon/34.png" alt="34">
+                    <p class="index">34</p>
+                </li>
+                <li class="item" style="--i: 35;">
+                    <p class="chinese label">晉</p>
+                    <img class="icon" src="64 Hexagram Icon/35.png" alt="35">
+                    <p class="index">35</p>
+                </li>
+                <li class="item" style="--i: 36;">
+                    <p class="chinese label">明夷</p>
+                    <img class="icon" src="64 Hexagram Icon/36.png" alt="36">
+                    <p class="index">36</p>
+                </li>
+                <li class="item" style="--i: 37;">
+                    <p class="chinese label">家人</p>
+                    <img class="icon" src="64 Hexagram Icon/37.png" alt="37">
+                    <p class="index">37</p>
+                </li>
+                <li class="item" style="--i: 38;">
+                    <p class="chinese label">睽</p>
+                    <img class="icon" src="64 Hexagram Icon/38.png" alt="38">
+                    <p class="index">38</p>
+                </li>
+                <li class="item" style="--i: 39;">
+                    <p class="chinese label">蹇</p>
+                    <img class="icon" src="64 Hexagram Icon/39.png" alt="39">
+                    <p class="index">39</p>
+                </li>
+                <li class="item" style="--i: 40;">
+                    <p class="chinese label">解</p>
+                    <img class="icon" src="64 Hexagram Icon/40.png" alt="40">
+                    <p class="index">40</p>
+                </li>
+                <li class="item" style="--i: 41;">
+                    <p class="chinese label">損</p>
+                    <img class="icon" src="64 Hexagram Icon/41.png" alt="41">
+                    <p class="index">41</p>
+                </li>
+                <li class="item" style="--i: 42;">
+                    <p class="chinese label">益</p>
+                    <img class="icon" src="64 Hexagram Icon/42.png" alt="42">
+                    <p class="index">42</p>
+                </li>
+                <li class="item" style="--i: 43;">
+                    <p class="chinese label">夬</p>
+                    <img class="icon" src="64 Hexagram Icon/43.png" alt="43">
+                    <p class="index">43</p>
+                </li>
+                <li class="item" style="--i: 44;">
+                    <p class="chinese label">姤</p>
+                    <img class="icon" src="64 Hexagram Icon/44.png" alt="44">
+                    <p class="index">44</p>
+                </li>
+                <li class="item" style="--i: 45;">
+                    <p class="chinese label">萃</p>
+                    <img class="icon" src="64 Hexagram Icon/45.png" alt="45">
+                    <p class="index">45</p>
+                </li>
+                <li class="item" style="--i: 46;">
+                    <p class="chinese label">升</p>
+                    <img class="icon" src="64 Hexagram Icon/46.png" alt="46">
+                    <p class="index">46</p>
+                </li>
+                <li class="item" style="--i: 47;">
+                    <p class="chinese label">困</p>
+                    <img class="icon" src="64 Hexagram Icon/47.png" alt="47">
+                    <p class="index">47</p>
+                </li>
+                <li class="item" style="--i: 48;">
+                    <p class="chinese label">井</p>
+                    <img class="icon" src="64 Hexagram Icon/48.png" alt="48">
+                    <p class="index">48</p>
+                </li>
+                <li class="item" style="--i: 49;">
+                    <p class="chinese label">革</p>
+                    <img class="icon" src="64 Hexagram Icon/49.png" alt="49">
+                    <p class="index">49</p>
+                </li>
+                <li class="item" style="--i: 50;">
+                    <p class="chinese label">鼎</p>
+                    <img class="icon" src="64 Hexagram Icon/50.png" alt="50">
+                    <p class="index">50</p>
+                </li>
+                <li class="item" style="--i: 51;">
+                    <p class="chinese label">震</p>
+                    <img class="icon" src="64 Hexagram Icon/51.png" alt="51">
+                    <p class="index">51</p>
+                </li>
+                <li class="item" style="--i: 52;">
+                    <p class="chinese label">艮</p>
+                    <img class="icon" src="64 Hexagram Icon/52.png" alt="52">
+                    <p class="index">52</p>
+                </li>
+                <li class="item" style="--i: 53;">
+                    <p class="chinese label">漸</p>
+                    <img class="icon" src="64 Hexagram Icon/53.png" alt="53">
+                    <p class="index">53</p>
+                </li>
+                <li class="item" style="--i: 54;">
+                    <p class="chinese label">歸妹</p>
+                    <img class="icon" src="64 Hexagram Icon/54.png" alt="54">
+                    <p class="index">54</p>
+                </li>
+                <li class="item" style="--i: 55;">
+                    <p class="chinese label">豐</p>
+                    <img class="icon" src="64 Hexagram Icon/55.png" alt="55">
+                    <p class="index">55</p>
+                </li>
+                <li class="item" style="--i: 56;">
+                    <p class="chinese label">旅</p>
+                    <img class="icon" src="64 Hexagram Icon/56.png" alt="56">
+                    <p class="index">56</p>
+                </li>
+                <li class="item" style="--i: 57;">
+                    <p class="chinese label">巽</p>
+                    <img class="icon" src="64 Hexagram Icon/57.png" alt="57">
+                    <p class="index">57</p>
+                </li>
+                <li class="item" style="--i: 58;">
+                    <p class="chinese label">兌</p>
+                    <img class="icon" src="64 Hexagram Icon/58.png" alt="58">
+                    <p class="index">58</p>
+                </li>
+                <li class="item" style="--i: 59;">
+                    <p class="chinese label">渙</p>
+                    <img class="icon" src="64 Hexagram Icon/59.png" alt="59">
+                    <p class="index">59</p>
+                </li>
+                <li class="item" style="--i: 60;">
+                    <p class="chinese label">節</p>
+                    <img class="icon" src="64 Hexagram Icon/60.png" alt="60">
+                    <p class="index">60</p>
+                </li>
+                <li class="item" style="--i: 61;">
+                    <p class="chinese label">中孚</p>
+                    <img class="icon" src="64 Hexagram Icon/61.png" alt="61">
+                    <p class="index">61</p>
+                </li>
+                <li class="item" style="--i: 62;">
+                    <p class="chinese label">小過</p>
+                    <img class="icon" src="64 Hexagram Icon/62.png" alt="62">
+                    <p class="index">62</p>
+                </li>
+                <li class="item" style="--i: 63;">
+                    <p class="chinese label">既濟</p>
+                    <img class="icon" src="64 Hexagram Icon/63.png" alt="63">
+                    <p class="index">63</p>
+                </li>
+                <li class="item" style="--i: 64;">
+                    <p class="chinese label">未濟</p>
+                    <img class="icon" src="64 Hexagram Icon/64.png" alt="64">
+                    <p class="index">64</p>
+                </li>
+            </ul>
+        </aside>
+    </main>
+
+    <div id="about-panel">
+        <div class="about-sheet">
+            <button class="about-close">
+                <a href="#">×</a>
+            </button>
+
+            <div class="about-content">
+                <h1>About</h1>
+                <h2>About I Ching</h2>
+                <p>For countless centuries emperor and peasant, scholar and unlearned alike have sought to understand
+                    the timeless wisdom and eerie divinations of the I Ching, translated, the Book of Changes. Using the
+                    simple tools of three coins, one can seek insight from the I Chlng regarding whatever question is on
+                    one's heart.</p>
+
+                <h2>About this website</h2>
+                <p>This website is an experiment in turning a book into a living website. It is built with HTML, CSS,
+                    and JavaScript. The design of this website reflect my own reading of the original <span
+                        class="chinese">易经</span> together with the translation by Richard Wilhelm and Cary F. Baynes
+                    and the modern commentary known as Windwalker I Ching.</p>
+
+                <h2>Using this website</h2>
+                <p>This website is used to navigate the content of the I Ching, to access hexagrams quickly, and to
+                    interact with the text in a simple, direct way. An interactive section allows coins to be tossed to
+                    form a hexagram, providing a straightforward and interactive experience of the consultation process.
+                </p>
+
+                <h2>Credit</h2>
+                <p>Credits for source texts include the original <span class="chinese">易经</span>, the I Ching
+                    translation by Richard Wilhelm and Cary F. Baynes, and the Windwalker I Ching commentary.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="container">
+        <small>&copy; <time id="year">2025</time> Book to Website Project</small>
+    </footer>
+
+    <script>
+        (function (d) {
+            var config = {
+                kitId: 'vun0iio',
+                scriptTimeout: 3000,
+                async: true
+            },
+                h = d.documentElement,
+                t = setTimeout(function () {
+                    h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive";
+                }, config.scriptTimeout),
+                tk = d.createElement("script"),
+                f = false,
+                s = d.getElementsByTagName("script")[0], a;
+            h.className += " wf-loading";
+            tk.src = 'https://use.typekit.net/' + config.kitId + '.js';
+            tk.async = true;
+            tk.onload = tk.onreadystatechange = function () {
+                a = this.readyState;
+                if (f || a && a != "complete" && a != "loaded") return;
+                f = true;
+                clearTimeout(t);
+                try { Typekit.load(config) } catch (e) { }
+            };
+            s.parentNode.insertBefore(tk, s);
+        })(document);
+
+        (() => {
+            const wheelArea = document.getElementById('wheel');
+            const circular = document.getElementById('wheelList') || document.querySelector('.circular');
+            const items = [...circular.querySelectorAll('.item')];
+
+            const N = 64;
+            const SECTOR = 360 / N;
+            const ARROW_ANGLE_DEG = 0;
+
+            let angle = 0;
+            let speed = 0;
+            const SENSITIVITY = 0.25;
+            const FRICTION = 0;
+            const AUTO_SPEED = -0.02;
+
+            let raf = null;
+            let activeIndex = null;
+
+            let autoRotate = false;
+            let idleTimeout = null;
+            const IDLE_DELAY = 10000;
+
+            const hexArticles = [...document.querySelectorAll('.hex')];
+
+            function showHexByIndex(num) {
+                const index = ((num - 1 + N) % N) + 1;
+                const id = 'hx-' + String(index).padStart(2, '0');
+
+                hexArticles.forEach(a => a.classList.remove('active'));
+
+                const article = document.getElementById(id);
+                if (article) {
+                    article.classList.add('active');
+                }
+            }
+
+            const mod360 = v => ((v % 360) + 360) % 360;
+
+            const setAngle = (a) => {
+                circular.style.setProperty('--angle', a + 'deg');
+                updateActive();
+            };
+
+            function getActiveIndexFromAngle() {
+                const target = mod360(ARROW_ANGLE_DEG - angle);
+                const idx0 = Math.round(target / SECTOR) % N;
+                return idx0 + 1;
+            }
+
+            function updateActive() {
+                const idx = getActiveIndexFromAngle();
+                if (idx === activeIndex) return;
+
+                if (activeIndex != null) {
+                    const prev = circular.querySelector(`.item[style*="--i: ${activeIndex}"]`);
+                    if (prev) prev.classList.remove('active');
+                }
+                const curr = circular.querySelector(`.item[style*="--i: ${idx}"]`);
+                if (curr) curr.classList.add('active');
+
+                activeIndex = idx;
+
+                showHexByIndex(idx);
+            }
+
+            function rotateBy(deltaY) {
+                angle += deltaY * SENSITIVITY;
+                setAngle(angle);
+            }
+
+            function resetIdleTimer() {
+                autoRotate = false;
+                if (idleTimeout) clearTimeout(idleTimeout);
+                idleTimeout = setTimeout(() => {
+                    autoRotate = true;
+                }, IDLE_DELAY);
+            }
+
+            function step() {
+                speed *= FRICTION;
+                if (Math.abs(speed) < 0.01) {
+                    speed = 0;
+                }
+
+                if (autoRotate || speed !== 0) {
+                    angle += (autoRotate ? AUTO_SPEED : 0) + speed;
+                    setAngle(angle);
+                }
+
+                raf = requestAnimationFrame(step);
+            }
+
+            function kickInertia() {
+                if (!raf) {
+                    raf = requestAnimationFrame(step);
+                }
+            }
+
+            function cancelInertia() {
+                speed = 0;
+            }
+
+
+            function onWheel(e) {
+                e.preventDefault();
+                resetIdleTimer();
+                rotateBy(e.deltaY);
+                speed = e.deltaY * SENSITIVITY;
+                kickInertia();
+            }
+
+            let dragging = false, prevY = 0;
+
+            wheelArea.addEventListener('pointerdown', (e) => {
+                dragging = true;
+                prevY = e.clientY;
+                resetIdleTimer();
+                cancelInertia();
+                wheelArea.setPointerCapture(e.pointerId);
+            });
+
+            wheelArea.addEventListener('pointermove', (e) => {
+                if (!dragging) return;
+                const dy = prevY - e.clientY;
+                prevY = e.clientY;
+                resetIdleTimer();
+                rotateBy(dy);
+            });
+
+            wheelArea.addEventListener('pointerup', () => {
+                dragging = false;
+            });
+            wheelArea.addEventListener('pointercancel', () => {
+                dragging = false;
+            });
+
+            wheelArea.addEventListener('wheel', onWheel, { passive: false });
+
+            document.querySelectorAll('.hex .arrows a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    resetIdleTimer();
+                    cancelInertia();
+
+                    const href = link.getAttribute('href');
+                    const match = href && href.match(/(\d+)/);
+                    if (!match) return;
+
+                    const num = parseInt(match[1], 10);
+
+                    showHexByIndex(num);
+
+                    const targetIndex = num;
+                    const targetAngle = ARROW_ANGLE_DEG - (targetIndex - 1) * SECTOR;
+                    angle = targetAngle;
+                    setAngle(angle);
+                });
+            });
+
+            setAngle(angle);
+            showHexByIndex(1);
+            resetIdleTimer();
+            kickInertia();
+        })();
+
+    </script>
+
+
+</body>
+
+</html>

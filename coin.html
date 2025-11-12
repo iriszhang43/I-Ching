@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="style.css">
+
+    <title>I Ching — Coin</title>
+</head>
+<style>
+    :root {
+        --primary: #FFFEF5;
+        --secondary: #202020;
+    }
+
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    main {
+        flex: 1;
+    }
+
+    .container {
+        max-width: 100%;
+        height: auto;
+        padding: 50px;
+    }
+
+.layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  margin-top: 50px;
+  padding: 100px 200px 0px 200px;
+}
+
+.left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  height: 100%;
+  max-width: 400px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0rem;
+  gap: 1rem;
+  border: none;
+  background: transparent;
+}
+
+.arrow {
+  text-align: center;
+  font-size: 2rem;
+  opacity: 0.3;
+}
+
+.arrow.arrow--active {
+  opacity: 1;
+}
+
+.icon-slot {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-slot img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.mark {
+  margin-left: auto;
+  min-width: 2rem;
+  text-align: center;
+}
+
+.mark-value {
+  font-weight: 100;
+  font-size: 2rem;
+}
+
+.right {
+    margin-top: 25px;
+flex:1;
+  max-width:500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.coins {
+  display: flex;
+  flex-direction:column;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.coin {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  transform-style: preserve-3d;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.coin.flip {
+  animation: coin-flip 0.6s ease-out;
+}
+
+@keyframes coin-flip {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+.coin img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+.toss-btn {
+  border: none;
+  font-size: 36px;
+  font-family: inherit;
+  font-weight: 100;
+  cursor: pointer;
+  background: none;
+  opacity: 0.3;
+  transition: opacity 0.05s ease-in-out;
+}
+
+.toss-btn:hover {
+opacity: 1;}
+
+.result-hex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.result-hex p {
+text-align: center;  
+font-size: 36px;
+  font-weight: 100;
+}
+
+.result-hex img.hexagram-image {
+  max-width: 150px;
+  height: auto;
+  display: block;
+}
+
+
+@media (max-width: 700px) {
+  .game-layout {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .right {
+    width: 100%;
+  }
+}
+
+</style>
+
+<body>
+    <header class="container">
+        <nav class="topnav">
+            <a class="pageheader" href="index.html">I Ching</a>
+            <div class="navlinks">
+                <a href="#about-panel">About</a>
+                <a href="howto.html">How To</a>
+                <a href="hexagram.html">Hexagram</a>
+                <a href="coin.html" class="current">Coin</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container layout">
+        <div class="left">
+          <div class="row">
+            <span class="arrow">▶︎</span>
+            <div class="icon-slot">
+              <img src="Stripe/yin.png" alt="Row 1 icon">
+            </div>
+            <div class="mark">
+              <span class="mark-value">○</span>
+            </div>
+          </div>
+      
+
+          <div class="row">
+            <span class="arrow">▶︎</span>
+            <div class="icon-slot">
+              <img src="Stripe/yang.png" alt="Row 2 icon">
+            </div>
+            <div class="mark">
+              <span class="mark-value">×</span>
+            </div>
+          </div>
+      
+
+          <div class="row">
+            <span class="arrow">▶︎</span>
+            <div class="icon-slot">
+              <img src="Stripe/yin.png" alt="Row 3 icon">
+            </div>
+            <div class="mark">
+              <span class="mark-value">×</span>
+            </div>
+          </div>
+      
+
+          <div class="row">
+            <span class="arrow">▶︎</span>
+            <div class="icon-slot">
+              <img src="Stripe/yang.png" alt="Row 4 icon">
+            </div>
+            <div class="mark">
+              <span class="mark-value">○</span>
+            </div>
+          </div>
+      
+
+          <div class="row">
+            <span class="arrow">▶︎</span>
+            <div class="icon-slot">
+              <img src="Stripe/yang.png" alt="Row 5 icon">
+            </div>
+            <div class="mark">
+              <span class="mark-value">○</span>
+            </div>
+          </div>
+      
+
+          <div class="row">
+            <span class="arrow">▶︎</span>
+            <div class="icon-slot">
+              <img src="Stripe/yang.png" alt="Row 6 icon">
+            </div>
+            <div class="mark">
+              <span class="mark-value">×</span>
+            </div>
+          </div>
+        </div>
+      
+        <div class="right">
+          <div class="coins">
+            <div class="coin">
+              <img src="coin/head.png" alt="Coin 1">
+            </div>
+            <div class="coin">
+              <img src="coin/tail.png" alt="Coin 2">
+            </div>
+            <div class="coin">
+              <img src="coin/tail.png" alt="Coin 3">
+            </div>
+          </div>
+      
+          <button class="toss-btn">Toss</button>
+        </div>
+      </main>      
+
+
+    <div id="about-panel">
+        <div class="about-sheet">
+            <button class="about-close">
+                <a href="#">×</a>
+            </button>
+
+            <div class="about-content">
+                <h1>About</h1>
+                <h2>About I Ching</h2>
+                <p>For countless centuries emperor and peasant, scholar and unlearned alike have sought to understand
+                    the timeless wisdom and eerie divinations of the I Ching, translated, the Book of Changes. Using the
+                    simple tools of three coins, one can seek insight from the I Chlng regarding whatever question is on
+                    one's heart.</p>
+
+                <h2>About this website</h2>
+                <p>This website is an experiment in turning a book into a living website. It is built with HTML, CSS,
+                    and JavaScript. The design of this website reflect my own reading of the original <span class="chinese">易经</span> together with
+                    the translation by Richard Wilhelm and Cary F. Baynes and the modern commentary known as Windwalker
+                    I Ching.</p>
+
+                <h2>Using this website</h2>
+                <p>This website is used to navigate the content of the I Ching, to access hexagrams quickly, and to
+                    interact with the text in a simple, direct way. An interactive section allows coins to be tossed to
+                    form a hexagram, providing a straightforward and interactive experience of the consultation process.
+                </p>
+
+                <h2>Credit</h2>
+                <p>Credits for source texts include the original <span class="chinese">易经</span>, the I Ching translation by Richard Wilhelm and Cary
+                    F. Baynes, and the Windwalker I Ching commentary.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="container">
+        <small>&copy; <time id="year">2025</time> Book to Website Project</small>
+    </footer>
+
+    <script>
+          (function (d) {
+      var config = {
+        kitId: 'vun0iio',
+        scriptTimeout: 3000,
+        async: true
+      },
+        h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+    })(document);
+        document.addEventListener('DOMContentLoaded', () => {
+          const tossBtn = document.querySelector('.toss-btn');
+          const coinImages = document.querySelectorAll('.coin img');
+          const coinContainers = document.querySelectorAll('.coin');
+          const rows = Array.from(document.querySelectorAll('.left .row'));
+          const rightPanel = document.querySelector('.right');
+          const coinsWrapper = document.querySelector('.coins');
+      
+          let currentLineIndex = rows.length - 1;
+          let isAnimatingCoins = false;
+          let hasHexagramComplete = false;
+          let hasShownResult = false;
+          let currentHexNumber = null; 
+      
+          const delayPerCoin = 150; 
+          const flipDuration = 600; 
+      
+          const hexagramNames = {
+            1: 'Creative Power',
+            2: 'The Receptive',
+            3: 'Difficulty at the Beginning',
+            4: 'Youthful Folly',
+            5: 'Waiting',
+            6: 'Conflict',
+            7: 'The Army',
+            8: 'Holding Together',
+            9: 'Small Taming',
+            10: 'Treading',
+            11: 'Peace',
+            12: 'Standstill',
+            13: 'Fellowship',
+            14: 'Great Possession',
+            15: 'Modesty',
+            16: 'Enthusiasm',
+            17: 'Following',
+            18: 'Work on the Decayed',
+            19: 'Approach',
+            20: 'Contemplation',
+            21: 'Biting Through',
+            22: 'Grace',
+            23: 'Splitting Apart',
+            24: 'Return',
+            25: 'Innocence',
+            26: 'Great Taming',
+            27: 'Nourishment',
+            28: 'Great Excess',
+            29: 'The Abysmal',
+            30: 'The Clinging',
+            31: 'Influence',
+            32: 'Duration',
+            33: 'Retreat',
+            34: 'Great Power',
+            35: 'Progress',
+            36: 'Darkening of the Light',
+            37: 'The Family',
+            38: 'Opposition',
+            39: 'Obstruction',
+            40: 'Deliverance',
+            41: 'Decrease',
+            42: 'Increase',
+            43: 'Breakthrough',
+            44: 'Coming to Meet',
+            45: 'Gathering Together',
+            46: 'Pushing Upward',
+            47: 'Oppression',
+            48: 'The Well',
+            49: 'Revolution',
+            50: 'The Cauldron',
+            51: 'The Arousing',
+            52: 'Keeping Still',
+            53: 'Development',
+            54: 'The Marrying Maiden',
+            55: 'Abundance',
+            56: 'The Wanderer',
+            57: 'The Gentle Wind',
+            58: 'The Joyous Lake',
+            59: 'Dispersion',
+            60: 'Limitation',
+            61: 'Inner Truth',
+            62: 'Small Exceeding',
+            63: 'After Completion',
+            64: 'Before Completion'
+          };
+      
+          // Trigram order (index 0–7): ☰, ☱, ☲, ☳, ☴, ☵, ☶, ☷
+          const hexTable = [
+            [  1, 43, 14, 34,  9,  5, 26, 11 ], // lower ☰
+            [ 10, 58, 38, 54, 61, 60, 41, 19 ], // lower ☱
+            [ 13, 49, 30, 55, 37, 63, 22, 36 ], // lower ☲
+            [ 25, 17, 21, 51, 42,  3, 27, 24 ], // lower ☳
+            [ 44, 28, 50, 32, 57, 48, 18, 46 ], // lower ☴
+            [  6, 47, 64, 40, 59, 29,  4,  7 ], // lower ☵
+            [ 33, 31, 56, 62, 53, 39, 52, 15 ], // lower ☶
+            [ 12, 45, 35, 16, 20,  8, 23,  2 ]  // lower ☷
+          ];
+      
+          // yang = 1, yin = 0
+          function trigramIndexFromLines(lines3) {
+            const bits = lines3.map(l => (l === 'yang' ? '1' : '0')).join('');
+            switch (bits) {
+              case '111': return 0; // ☰
+              case '110': return 1; // ☱
+              case '101': return 2; // ☲
+              case '100': return 3; // ☳
+              case '011': return 4; // ☴
+              case '010': return 5; // ☵
+              case '001': return 6; // ☶
+              case '000': return 7; // ☷
+              default:
+                console.error('Unknown trigram bits:', bits);
+                return null;
+            }
+          }
+      
+          function resetHexagram() {
+            currentLineIndex = rows.length - 1;
+            hasHexagramComplete = false;
+            hasShownResult = false;
+            currentHexNumber = null;
+            tossBtn.textContent = 'Toss';
+      
+            if (coinsWrapper) {
+              coinsWrapper.style.display = '';
+            }
+      
+            const existingResult = rightPanel.querySelector('.result-hex');
+            if (existingResult) {
+              existingResult.remove();
+            }
+      
+            rows.forEach(row => {
+              const img = row.querySelector('.icon-slot img');
+              const markSpan = row.querySelector('.mark-value');
+              const arrow = row.querySelector('.arrow');
+      
+              if (img) {
+                img.style.visibility = 'hidden'; 
+              }
+              if (markSpan) {
+                markSpan.textContent = '';      
+              }
+              if (arrow) {
+                arrow.classList.remove('arrow--active');
+              }
+            });
+          }
+      
+         
+          function getRandomCoinResults() {
+            const results = [];
+            for (let i = 0; i < coinImages.length; i++) {
+              const isHead = Math.random() < 0.5;
+              results.push(isHead ? 'head' : 'tail');
+            }
+            return results;
+          }
+      
+          function applyLineFromCoins(results) {
+            if (currentLineIndex < 0) return; // safety
+      
+            const heads = results.filter(s => s === 'head').length;
+            const tails = results.length - heads;
+      
+            let lineType;  
+            let markChar = '';
+      
+            // Rules:
+            // 一正二反: 1 head, 2 tails -> yin
+            // 一反二正: 1 tail, 2 heads -> yang
+            // 三反: 3 tails -> yang + ○
+            // 三正: 3 heads -> yin + ×
+      
+            if (heads === 3) {
+              lineType = 'yin';
+              markChar = '×';
+            } else if (tails === 3) {
+              lineType = 'yang';
+              markChar = '○';
+            } else if (heads === 2 && tails === 1) {
+              lineType = 'yang';
+            } else {
+              lineType = 'yin';
+            }
+      
+            const row = rows[currentLineIndex];
+            const iconImg = row.querySelector('.icon-slot img');
+            const markSpan = row.querySelector('.mark-value');
+            const arrow = row.querySelector('.arrow');
+      
+            if (iconImg) {
+              iconImg.src = lineType === 'yin' ? 'Stripe/yin.png' : 'Stripe/yang.png';
+              iconImg.alt = lineType === 'yin' ? 'Yin line' : 'Yang line';
+              iconImg.style.visibility = 'visible';
+            }
+      
+            if (markSpan) {
+              markSpan.textContent = markChar; 
+            }
+      
+            if (arrow) {
+              arrow.classList.add('arrow--active');
+            }
+      
+            currentLineIndex -= 1;
+      
+            if (currentLineIndex < 0) {
+              hasHexagramComplete = true;
+              tossBtn.textContent = 'Show result';
+            }
+          }
+      
+          function showResult() {
+            const finalLines = [];
+      
+            for (let i = rows.length - 1; i >= 0; i--) {
+              const row = rows[i];
+              const iconImg = row.querySelector('.icon-slot img');
+              const markSpan = row.querySelector('.mark-value');
+      
+              if (!iconImg || iconImg.style.visibility === 'hidden') {
+                console.error('Incomplete hexagram, cannot show result.');
+                return;
+              }
+      
+              const src = iconImg.src;
+              let lineType;
+              if (src.includes('yin')) {
+                lineType = 'yin';
+              } else if (src.includes('yang')) {
+                lineType = 'yang';
+              } else {
+                console.error('Cannot determine line type from src:', src);
+                return;
+              }
+      
+              const hasMark = markSpan && markSpan.textContent.trim() !== '';
+              if (hasMark) {
+                lineType = (lineType === 'yin') ? 'yang' : 'yin';
+              }
+      
+              finalLines.push(lineType);
+            }
+      
+            if (finalLines.length !== 6) {
+              console.error('Expected 6 lines, got', finalLines.length);
+              return;
+            }
+      
+            const lowerTrigramLines = finalLines.slice(0, 3);
+            const upperTrigramLines = finalLines.slice(3, 6); 
+      
+            const lowerIndex = trigramIndexFromLines(lowerTrigramLines);
+            const upperIndex = trigramIndexFromLines(upperTrigramLines);
+      
+            if (lowerIndex == null || upperIndex == null) {
+              console.error('Could not compute trigram indices.');
+              return;
+            }
+      
+            const hexNumber = hexTable[lowerIndex][upperIndex];
+            if (!hexNumber) {
+              console.error('No hexagram number found for trigram pair.');
+              return;
+            }
+      
+            currentHexNumber = hexNumber;
+      
+            const labelNumber = String(hexNumber).padStart(2, '0');
+            const name = hexagramNames[hexNumber] || '';
+            const labelText = `${labelNumber}. ${name}`;
+      
+            if (coinsWrapper) {
+              coinsWrapper.style.display = 'none';
+            }
+      
+            let resultHex = rightPanel.querySelector('.result-hex');
+            if (!resultHex) {
+              resultHex = document.createElement('div');
+              resultHex.className = 'result-hex';
+              rightPanel.insertBefore(resultHex, tossBtn);
+            } else {
+              resultHex.innerHTML = '';
+            }
+      
+
+            const p = document.createElement('p');
+            p.textContent = labelText;
+      
+
+            const img = document.createElement('img');
+            img.src = `64 hexagram icon/${hexNumber}.png`; 
+            img.alt = `Hexagram ${labelNumber}`;
+            img.className = 'hexagram-image';
+      
+            resultHex.appendChild(p);
+            resultHex.appendChild(img);
+      
+
+            hasShownResult = true;
+            tossBtn.textContent = 'Learn more';
+          }
+      
+          resetHexagram();
+      
+          tossBtn.addEventListener('click', () => {
+            if (isAnimatingCoins) return;
+      
+            if (hasHexagramComplete) {
+              if (!hasShownResult) {
+                showResult();
+              } else if (currentHexNumber != null) {
+                const anchor = String(currentHexNumber).padStart(2, '0');
+                window.location.href = `hexagram.html#hex-${anchor}`;
+              }
+              return;
+            }
+      
+            isAnimatingCoins = true;
+      
+            coinContainers.forEach(coin => {
+              coin.style.opacity = '1';
+            });
+      
+            const results = getRandomCoinResults();
+      
+            coinContainers.forEach((coin, index) => {
+              const img = coin.querySelector('img');
+              const side = results[index];
+      
+              coin.classList.remove('flip');
+              void coin.offsetWidth;
+      
+              setTimeout(() => {
+                coin.classList.add('flip');
+                img.src = `coin/${side}.png`;
+                img.alt = `Coin ${side}`;
+              }, index * delayPerCoin);
+            });
+      
+            const totalDelay =
+              delayPerCoin * (coinContainers.length - 1) + flipDuration;
+      
+            setTimeout(() => {
+              applyLineFromCoins(results);
+              isAnimatingCoins = false;
+            }, totalDelay);
+          });
+        });
+      </script>
+      
+</body>
+
+</html>
