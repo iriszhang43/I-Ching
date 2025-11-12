@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="style.css">
+
+    <title>I Ching — How To</title>
+</head>
+<style>
+    :root {
+        --primary: #FFFEF5;
+        --secondary: #202020;
+    }
+
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    main {
+        flex: 1;
+    }
+
+    .container {
+        max-width: 100%;
+        height: auto;
+        padding: 50px;
+    }
+
+    .layout-reading {
+        margin: 0px 5vw;
+        display: flex;
+        gap: 7.5vw;
+    }
+
+    .tableofcontent {
+        padding-left: 100px;
+        padding-top: 120px;
+    }
+
+    .tableofcontent ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .tableofcontent li {
+        margin-bottom: 0.5rem;
+    }
+
+    .toc {
+        max-width: 300px;
+        text-align: left;
+        padding: 0.4rem 0.6rem;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        font: inherit;
+        color: var(--secondary);
+        transition: opacity 0.2s ease;
+        opacity: 0.3;
+    }
+
+    .toc:hover {
+        opacity: 1;
+    }
+
+    .toc.active {
+        opacity: 1;
+    }
+
+    .content-panel {
+        position: relative;
+    }
+
+    .content-item {
+        display: none;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .content-item.active {
+        display: flex;
+    }
+
+    .content-item .header h1 {
+        margin-top: 120px;
+    }
+
+    .content-body {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.75rem;
+    }
+
+    .arrows {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 0.25rem;
+    }
+
+    .arrow {
+        width: 32px;
+        height: 32px;
+        font: inherit;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        font-size: 36px;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        opacity: 0.3;
+        transition: opacity 0.2s ease;
+    }
+
+    .arrow.up {
+        padding-top: 30px;
+    }
+
+    .arrow.down {
+        transform: rotate(180deg);
+    }
+
+    .arrow:hover {
+        opacity: 1;
+    }
+
+    .description {
+        max-width: 60ch;
+        line-height: 1.5rem;
+    }
+
+    .header {
+        max-width: 80ch;
+    }
+
+    .header h1 {
+        font-weight: 100;
+    }
+
+    @media (max-width: 800px) {
+        .layout-reading {
+            flex-direction: column;
+        }
+
+        .tableofcontent {
+            flex-basis: auto;
+        }
+    }
+</style>
+
+<body>
+    <header class="container">
+        <nav class="topnav">
+            <a class="pageheader" href="index.html">I Ching</a>
+            <div class="navlinks">
+                <a href="#about-panel">About</a>
+                <a href="howto.html" class="current">How To</a>
+                <a href="hexagram.html">Hexagram</a>
+                <a href="coin.html">Coin</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container layout-reading">
+        <nav class="tableofcontent">
+            <ul>
+                <li><button class="toc active" data-index="0">1. Asking A question</button></li>
+                <li><button class="toc" data-index="1">2. Casting the coins</button></li>
+                <li><button class="toc" data-index="2">3. Building a trigram</button></li>
+                <li><button class="toc" data-index="3">4. Building a hexagram</button></li>
+                <li><button class="toc" data-index="4">5. Finding the Hexagram</button></li>
+                <li><button class="toc" data-index="5">6. Interpreting the Hexagram</button></li>
+                <li><button class="toc" data-index="6">'Dotted' line forms</button></li>
+            </ul>
+        </nav>
+
+        <section class="content-panel">
+
+            <article class="content-item active" data-index="0">
+                <div class="header">
+                    <h1>1. Asking A question</h1>
+                </div>
+                <div class="content-body">
+                    <div class="arrows">
+                        <button class="arrow up" type="button">^</button>
+                        <button class="arrow down" type="button">^</button>
+                    </div>
+                    <div class="description">
+                        <p>There is a question burning in your heart and mind. Think about it and then write it down,
+                            privately, on a piece of paper. Writing the question down helps you to focus on the precise
+                            subject being asked about, thereby avoiding ambiguity. Be sure to word your question so that
+                            it requires a commentary type of answer ... i.e., do not ask a question that requires a
+                            'yes' or 'no' answer. For example, ask "What if..." or "What is this all about...?"</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="content-item" data-index="1">
+                <div class="header">
+                    <h1>2. Casting the coins</h1>
+                </div>
+                <div class="content-body">
+                    <div class="arrows">
+                        <button class="arrow up" type="button">^</button>
+                        <button class="arrow down" type="button">^</button>
+                    </div>
+                    <div class="description">
+                        <p>With your mind focused on the question you've written down, gather three coins of the same
+                            size into your hands, shake them until they are randomly arranged in your hand, then cast
+                            them gently upon the table in front of you. Notice how the coins have landed with either
+                            beads' or 'tails' facing up.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="content-item" data-index="2">
+                <div class="header">
+                    <h1>3. Building a trigram</h1>
+                </div>
+                <div class="content-body">
+                    <div class="arrows">
+                        <button class="arrow up" type="button">^</button>
+                        <button class="arrow down" type="button">^</button>
+                    </div>
+                    <div class="description">
+                        <p>Match the beads or tails' pattern of the cast coins with one of the 4 patterns shown in the
+                            following table. Make note of the associated line form next to the matched pattern and write
+                            it down. (Note that if you cast three-of-a-kind, the line form will have a dot after it).
+                            Repeat this coin casting process 2 more times. each time placing the next line form on top
+                            of the previous one. Having done this 3 times, you will have a 3 line figure known as a
+                            trigram.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="content-item" data-index="3">
+                <div class="header">
+                    <h1>4. Building a hexagram</h1>
+                </div>
+                <div class="content-body">
+                    <div class="arrows">
+                        <button class="arrow up" type="button">^</button>
+                        <button class="arrow down" type="button">^</button>
+                    </div>
+                    <div class="description">
+                        <p>You need to create 2 trigrams to make a full hexagram. So, create a second trigram using the
+                            same process above. When done you will have created a hexagram consisting of a lower trigram
+                            (the first one) and an upper trigram (the second one).</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="content-item" data-index="4">
+                <div class="header">
+                    <h1>5. Finding the Hexagram</h1>
+                </div>
+                <div class="content-body">
+                    <div class="arrows">
+                        <button class="arrow up" type="button">^</button>
+                        <button class="arrow down" type="button">^</button>
+                    </div>
+                    <div class="description">
+                        <p>Cross reference the lower trigram with the upper trigram using the chart below. For the
+                            moment, ignore any dots that may appear beside any of the line forms. Make note of the
+                            hexagram number that the two trigrams form, and turn to the page with that number.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="content-item" data-index="5">
+                <div class="header">
+                    <h1>6. Interpreting the Hexagram</h1>
+                </div>
+                <div class="content-body">
+                    <div class="arrows">
+                        <button class="arrow up" type="button">^</button>
+                        <button class="arrow down" type="button">^</button>
+                    </div>
+                    <div class="description">
+                        <p>The hexagram you have created contains words of insight pertaining to your question. Seek to
+                            apply the words you're given to the question you asked, in a sincere and introspective way.
+                            Suspend preconceptions that may cloud your vision regarding the subject under consideration.
+                            Your intuition will confirm whether or not you have been enlightened. Sometimes you may not
+                            understand the full meaning of your hexagram, as it relates to the question you asked.
+                            Whether or not so, be certain that the question you asked is the question that is truly the
+                            one most on your mind at the time you cast the coins. Since the pattern of the falling coins
+                            is determined, in part, by the cosmic vibrations emanating from your mind, it is possible
+                            for the I Ching to answer the question that is really on your mind and not the one you wrote
+                            down. if the two are not the same.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="content-item" data-index="6">
+                <div class="header">
+                    <h1>'Dotted' line forms</h1>
+                </div>
+                <div class="content-body">
+                    <div class="arrows">
+                        <button class="arrow up" type="button">^</button>
+                        <button class="arrow down" type="button">^</button>
+                    </div>
+                    <div class="description">
+                        <p>You may have cast one or more "three-of-a-kind" patterns (3-heads or 3-tails), resulting in a
+                            'dotted' line form in your hexagram. If so, there remains further information for you from
+                            the I Ching. The dotted line means that your hexagram is soon to undergo a change. To learn
+                            how it is going to change, you must transform the current hexagram into its future form. You
+                            do this by converting the dotted line forms into their opposite forms, that is solid lines
+                            become dashed lines and dashed lines become solid lines. For example.. using the procedure
+                            described above, look up the meaning of the second hexagram, realizing that this second
+                            hexagram is predicting a likely future condition regarding the question that you've asked.
+                        </p>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+
+    <div id="about-panel">
+        <div class="about-sheet">
+            <button class="about-close">
+                <a href="#">×</a>
+            </button>
+
+            <div class="about-content">
+                <h1>About</h1>
+                <h2>About I Ching</h2>
+                <p>For countless centuries emperor and peasant, scholar and unlearned alike have sought to understand
+                    the timeless wisdom and eerie divinations of the I Ching, translated, the Book of Changes. Using the
+                    simple tools of three coins, one can seek insight from the I Chlng regarding whatever question is on
+                    one's heart.</p>
+
+                <h2>About this website</h2>
+                <p>This website is an experiment in turning a book into a living website. It is built with HTML, CSS,
+                    and JavaScript. The design of this website reflect my own reading of the original <span class="chinese">易经</span> together with
+                    the translation by Richard Wilhelm and Cary F. Baynes and the modern commentary known as Windwalker
+                    I Ching.</p>
+
+                <h2>Using this website</h2>
+                <p>This website is used to navigate the content of the I Ching, to access hexagrams quickly, and to
+                    interact with the text in a simple, direct way. An interactive section allows coins to be tossed to
+                    form a hexagram, providing a straightforward and interactive experience of the consultation process.
+                </p>
+
+                <h2>Credit</h2>
+                <p>Credits for source texts include the original <span class="chinese">易经</span>, the I Ching translation by Richard Wilhelm and Cary
+                    F. Baynes, and the Windwalker I Ching commentary.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="container">
+        <small>&copy; <time id="year">2025</time> Book to Website Project</small>
+    </footer>
+
+    <script>
+            (function (d) {
+      var config = {
+        kitId: 'vun0iio',
+        scriptTimeout: 3000,
+        async: true
+      },
+        h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+    })(document);
+        const tocItems = document.querySelectorAll('.toc');
+        const contentItems = document.querySelectorAll('.content-item');
+
+        let currentIndex = 0;
+
+        function showItem(index) {
+            if (index < 0 || index >= contentItems.length) return;
+
+            tocItems.forEach(item => item.classList.remove('active'));
+            contentItems.forEach(item => item.classList.remove('active'));
+
+            tocItems[index].classList.add('active');
+            contentItems[index].classList.add('active');
+
+            currentIndex = index;
+        }
+
+        tocItems.forEach((item) => {
+            item.addEventListener('click', () => {
+                const index = parseInt(item.dataset.index, 10);
+                showItem(index);
+            });
+        });
+
+        contentItems.forEach((article) => {
+            const up = article.querySelector('.arrow.up');
+            const down = article.querySelector('.arrow.down');
+
+            up.addEventListener('click', () => {
+                let next = currentIndex - 1;
+                if (next < 0) next = contentItems.length - 1; 
+                showItem(next);
+            });
+
+            down.addEventListener('click', () => {
+                let next = currentIndex + 1;
+                if (next >= contentItems.length) next = 0;   
+                showItem(next);
+            });
+        });
+
+        showItem(0);
+    </script>
+
+
+</body>
+
+</html>

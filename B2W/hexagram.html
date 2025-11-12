@@ -1,0 +1,1364 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="style.css">
+
+  <title>I Ching — Hexagram</title>
+</head>
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1;
+  }
+
+  .container {
+    max-width: 100%;
+    height: auto;
+    padding: 50px;
+  }
+
+  .list {
+    max-width: 100%;
+    padding: 100px 150px 0px 150px;
+  }
+
+  details {
+    padding-bottom: 20px;
+  }
+
+  details.row:last-child {
+    border-bottom: 0;
+  }
+
+  summary {
+    display: grid;
+    grid-template-columns: 7.5ch minmax(40px, 2fr) 7ch minmax(140px, 4fr) auto;
+    gap: 5rem;
+    align-items: center;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+
+
+  summary:focus,
+  summary:focus-visible {
+    outline: none;
+  }
+
+  .chevron {
+    transform: rotate(-90deg);
+    transition: transform .25s ease;
+    justify-self: end;
+  }
+
+  details[open] .chevron {
+    transform: rotate(-180deg);
+  }
+
+  .panel {
+    margin: 50px 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+  }
+
+  summary[id] {
+    scroll-margin-top: 150px;
+  }
+
+  .hexagram>img {
+    width: 150px;
+  }
+
+  .content {
+    padding-left: 50px;
+  }
+
+  .content>p {
+    margin: 0 0 10px 0;
+  }
+
+  .list .row {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+  }
+
+  .list:has(.row[open]) .row:not([open]):not(:hover) {
+  opacity: 0.3;
+}
+
+  .list .row[open] {
+    opacity: 1;
+  }
+</style>
+
+<body>
+  <header class="container">
+    <nav class="topnav">
+      <a class="pageheader" href="index.html">I Ching</a>
+      <div class="navlinks">
+        <a href="#about-panel">About</a>
+        <a href="howto.html">How To</a>
+        <a href="hexagram.html" class="current">Hexagram</a>
+        <a href="coin.html">Coin</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="list">
+      <details class="row">
+        <summary id="hex-01">
+          <span class="number">01.</span>
+          <span class="title">Creator</span>
+          <span class="chinese">乾</span>
+          <span class="description">Heaven above Heaven below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/1.png" alt="1"></div>
+          <div class="content">
+            <p>The universe is united in power.</p>
+            <p>So too the wise person execute his actions with power and creativity.</p>
+            <p>Exceptional progress comes by correct persistence.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-02">
+          <span class="number">02.</span>
+          <span class="title">Yielding</span>
+          <span class="chinese">坤</span>
+          <span class="description">Earth above, Earth below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/2.png" alt="2"></div>
+          <div class="content">
+            <p>The receptive earth is in power.</p>
+            <p>The wise person follows the natural path of calmness and correct persistence.</p>
+            <p>Others may lead while you support their goals.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-03">
+          <span class="number">03.</span>
+          <span class="title">Confusion</span>
+          <span class="chinese">屯</span>
+          <span class="description">Water above, Thunder below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/3.png" alt="3"></div>
+          <div class="content">
+            <p>Thunderclouds indicate profound disquiet.</p>
+            <p>Undertake no distant goal, but organize support.</p>
+            <p>Concern yourself with the problems of the moment.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-04">
+          <span class="number">04.</span>
+          <span class="title">Inexperience</span>
+          <span class="chinese">蒙</span>
+          <span class="description">Mountain above, Water below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/4.png" alt="4"></div>
+          <div class="content">
+            <p>Spring water collects at the base of the quiet mountain.</p>
+            <p>The enlightened person fmds his level through learning, decisiveness, and correct persistence.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-05">
+          <span class="number">05.</span>
+          <span class="title">Waiting</span>
+          <span class="chinese">需</span>
+          <span class="description">Water above, Heaven below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/5.png" alt="5"></div>
+          <div class="content">
+            <p>Clouds of anxietyrise.</p>
+            <p>Do not be anxious, but wait with confidence.</p>
+            <p>The moment will arrive when correct persistence brings progress.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-06">
+          <span class="number">06.</span>
+          <span class="title">Conflict</span>
+          <span class="chinese">訟</span>
+          <span class="description">Heaven above, Water below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/6.png" alt="6"></div>
+          <div class="content">
+            <p>Heaven and water, strength and profundity, conflict.</p>
+            <p>Avoid confrontation.</p>
+            <p>yield with caution.</p>
+            <p>persist not against obstacles.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-07">
+          <span class="number">07.</span>
+          <span class="title">Cooperation</span>
+          <span class="chinese">師</span>
+          <span class="description">Earth above, Water below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/7.png" alt="7"></div>
+          <div class="content">
+            <p>The receptive earth holds the water, and the wise person will find strength in the company of many
+              fellows.</p>
+            <p>With leadership there will be correct persistence and good fortune.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-08">
+          <span class="number">08.</span>
+          <span class="title">Unity</span>
+          <span class="chinese">比</span>
+          <span class="description">Water above, Earth below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/8.png" alt="8"></div>
+          <div class="content">
+            <p>The receptive earth beneath.</p>
+            <p>With profundity above, indicates the need for unity and collective awareness of the goal.</p>
+            <p>Do not procrastinate.</p>
+            <p>Join with others and return to the plan.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-09">
+          <span class="number">09.</span>
+          <span class="title">Restraint</span>
+          <span class="chinese">小畜</span>
+          <span class="description">Wind above,Heaven below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/9.png" alt="9"></div>
+          <div class="content">
+            <p>The winds of gradual change.</p>
+            <p>Supported by the strength of Heaven.</p>
+            <p>Shows that restraint brings progress and satisfaction.</p>
+            <p>Make minor changes and conceal all actions.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-10">
+          <span class="number">10.</span>
+          <span class="title">Correct conduct</span>
+          <span class="chinese">履</span>
+          <span class="description">Heaven above, Lake below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/10.png" alt="10"></div>
+          <div class="content">
+            <p>The excessive beneath the strong above.</p>
+            <p>Discriminate between the inferior achieve and superior progress.</p>
+            <p>Change gives way to stability.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-11">
+          <span class="number">11.</span>
+          <span class="title">Prosperity</span>
+          <span class="chinese">泰</span>
+          <span class="description">Earth above, Heaven below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/11.png" alt="11"></div>
+          <div class="content">
+            <p>The strength of Heaven mingles with the receptive earth.</p>
+            <p>The wise leader benefits from this harmony.</p>
+            <p>Good fortune approaches.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-12">
+          <span class="number">12.</span>
+          <span class="title">Stagnation</span>
+          <span class="chinese">否</span>
+          <span class="description">Heaven above, Earth below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/12.png" alt="12"></div>
+          <div class="content">
+            <p>The strong and the receptive do not meet.</p>
+            <p>Strong persons give way to the inferior.</p>
+            <p>The enlightened person remains reserved to avoid misfortune.</p>
+            <p>No advantage in persistence.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-13">
+          <span class="number">13.</span>
+          <span class="title">Community</span>
+          <span class="chinese">同人</span>
+          <span class="description">Heaven above, Fire below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/13.png" alt="13"></div>
+          <div class="content">
+            <p>Strength of heaven, dependence of fire.</p>
+            <p>Recognize the dependence of all upon their fellows.</p>
+            <p>The wiseperson seeks the collective flow to gain advantage.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-14">
+          <span class="number">14.</span>
+          <span class="title">Sovereignty</span>
+          <span class="chinese">大有</span>
+          <span class="description">Fire above, Heaven below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/14.png" alt="14"></div>
+          <div class="content">
+            <p>The strength of heaven holds a fiery intelligence, the maker of an enlightened ruler.</p>
+            <p>Resist evil; exalt good.</p>
+            <p>Proper Leadership brings great progress.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-15">
+          <span class="number">15.</span>
+          <span class="title">Moderation</span>
+          <span class="chinese">謙</span>
+          <span class="description">Earth above, Mountain below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/15.png" alt="15"></div>
+          <div class="content">
+            <p>The tranquil mountain amid the receptive earth indicates great progress through the reduction of excess.
+            </p>
+            <p>Progress comes by equality of extremes.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-16">
+          <span class="number">16.</span>
+          <span class="title">Harmony</span>
+          <span class="chinese">豫</span>
+          <span class="description">Thunder above, Earth below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/16.png" alt="16"></div>
+          <div class="content">
+            <p>From the receptive earth comes the loud thunder.</p>
+            <p>So from harmony with supporters does the wise person gain advantage.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-17">
+          <span class="number">17.</span>
+          <span class="title">Flexibility</span>
+          <span class="chinese">隨</span>
+          <span class="description">Lake above, Thunder below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/17.png" alt="17"></div>
+          <div class="content">
+            <p>In the midst of excess, growth and persistence produces progress.</p>
+            <p>The enlightened person adapts.</p>
+            <p>and leads the way from darkness to comfort.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-18">
+          <span class="number">18.</span>
+          <span class="title">Repair</span>
+          <span class="chinese">蠱</span>
+          <span class="description">Mountain above, Wind below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/18.png" alt="18"></div>
+          <div class="content">
+            <p>Winds of gradual change wear away the mountain.</p>
+            <p>Cultivate action in others to bring about repair and great progress.</p>
+            <p>If starting, meditate on the future.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-19">
+          <span class="number">19.</span>
+          <span class="title">Promotion</span>
+          <span class="chinese">臨</span>
+          <span class="description">Earth above, Lake below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/19.png" alt="19"></div>
+          <div class="content">
+            <p>The earth above reflects in the lake beneath.</p>
+            <p>So is the enlightened person willing to teach and learn from others.</p>
+            <p>Progress comes through persistence.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-20">
+          <span class="number">20.</span>
+          <span class="title">Contemplation</span>
+          <span class="chinese">觀</span>
+          <span class="description">Wind above, Earth below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/20.png" alt="20"></div>
+          <div class="content">
+            <p>As the wind moves over the earth, so too the rulers of old travelled the world.</p>
+            <p>They visited its regions and contemplated its many cultures.</p>
+            <p>Explore new ideas.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-21">
+          <span class="number">21.</span>
+          <span class="title">Reform</span>
+          <span class="chinese">噬嗑</span>
+          <span class="description">Fire above, Thunder below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/21.png" alt="21"></div>
+          <div class="content">
+            <p>The turbulence of thunder and lightning indicates the need for change.</p>
+            <p>Achieve progress through reform.</p>
+            <p>Administer justice.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-22">
+          <span class="number">22.</span>
+          <span class="title">Serenity</span>
+          <span class="chinese">賁</span>
+          <span class="description">Mountain above, Fire below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/22.png" alt="22"></div>
+          <div class="content">
+            <p>Illumination reveals the foot of the immovable mountain.</p>
+            <p>So the wise person perceives and avoids disputes.</p>
+            <p>No progress except in small matters.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-23">
+          <span class="number">23.</span>
+          <span class="title">Deterioration</span>
+          <span class="chinese">剝</span>
+          <span class="description">Mountain above, Earth below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/23.png" alt="23"></div>
+          <div class="content">
+            <p>The weak earth cannot support the mountain.</p>
+            <p>The realm deteriorates.</p>
+            <p>Enlightened people stabilize their lives through generosity toward the needy.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-24">
+          <span class="number">24.</span>
+          <span class="title">Repetition</span>
+          <span class="chinese">復</span>
+          <span class="description">Earth above, Thunder below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/24.png" alt="24"></div>
+          <div class="content">
+            <p>The beginning of a new cycle shows that repetition brings new progress toward a goal.</p>
+            <p>Friends return.</p>
+            <p>The repeating cycle is part of the Way.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-25">
+          <span class="number">25.</span>
+          <span class="title">Spontaneity</span>
+          <span class="chinese">無妄</span>
+          <span class="description">Heaven above, Thunder below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/25.png" alt="25"></div>
+          <div class="content">
+            <p>Strength above and activity below indicates an alignment with a natural state.</p>
+            <p>Act with persistence and inspiration, but without a true truer goal.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-26">
+          <span class="number">26.</span>
+          <span class="title">Potential</span>
+          <span class="chinese">大畜</span>
+          <span class="description">Mountain above, Heaven below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/26.png" alt="26"></div>
+          <div class="content">
+            <p>The strength of the Heavens comes from within the mountain.</p>
+            <p>The enlightened person studies the past's wisdom to develops his own character.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-27">
+          <span class="number">27.</span>
+          <span class="title">Nurturing</span>
+          <span class="chinese">頤</span>
+          <span class="description">Mountain above, Thunder below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/27.png" alt="27"></div>
+          <div class="content">
+            <p>Energy stirs beneath immobility.</p>
+            <p>Support goals that are above question.</p>
+            <p>But be cautious in expression and avoid the negative.</p>
+            <p>Correct persistence brings one goog fortune.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-28">
+          <span class="number">28.</span>
+          <span class="title">Imminent change</span>
+          <span class="chinese">大過</span>
+          <span class="description">Lake above, Wind below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/28.png" alt="28"></div>
+          <div class="content">
+            <p>The enlightened person withdraws from the world to progress toward an independent goal.</p>
+            <p>Stress is imminent.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-29">
+          <span class="number">29.</span>
+          <span class="title">Danger</span>
+          <span class="chinese">坎</span>
+          <span class="description">Water above, Water below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/29.png" alt="29"></div>
+          <div class="content">
+            <p>Profundity produces difficulty.</p>
+            <p>The wise person learns confidence through danger.</p>
+            <p>Remain calm in mind.</p>
+            <p>keep all actions virtuous.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-30">
+          <span class="number">30.</span>
+          <span class="title">Enlightened intelligence</span>
+          <span class="chinese">離</span>
+          <span class="description">Fire above, Fire below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/30.png" alt="30"></div>
+          <div class="content">
+            <p>Intelligence shines above and below.</p>
+            <p>The enlightened person cultivates intelligence and gains progress through correct persistence.</p>
+            <p>Align yourself with goals that bring enlightenment.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-31">
+          <span class="number">31.</span>
+          <span class="title">Attraction</span>
+          <span class="chinese">咸</span>
+          <span class="description">Lake above, Mountain below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/31.png" alt="31"></div>
+          <div class="content">
+            <p>Tranquility combined with excess produces pleasure.</p>
+            <p>Marriage brings good fortune.</p>
+            <p>Accept others and act openly.</p>
+            <p>All change is imminent.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-32">
+          <span class="number">32.</span>
+          <span class="title">Continuity</span>
+          <span class="chinese">恆</span>
+          <span class="description">Thunder above, Wind below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/32.png" alt="32"></div>
+          <div class="content">
+            <p>Activity and change teach well the value of endurance.</p>
+            <p>Stand firm and move with persistence toward a goal.</p>
+            <p>Freedom from error.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-33">
+          <span class="number">33.</span>
+          <span class="title">Retreat</span>
+          <span class="chinese">遯</span>
+          <span class="description">Heaven above, Mountain below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/33.png" alt="33"></div>
+          <div class="content">
+            <p>The tranquil mountain remains quiet under Heaven's gaze.</p>
+            <p>So does the enlightened person maintain dignity in retreat.</p>
+            <p>Persist only in small matters, and avoid mean conflict.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-34">
+          <span class="number">34.</span>
+          <span class="title">Power</span>
+          <span class="chinese">大壯</span>
+          <span class="description">Thunder above, Heaven below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/34.png" alt="34"></div>
+          <div class="content">
+            <p>Activity in the light of day.</p>
+            <p>The wise person acts within convention and with persistence.</p>
+            <p>Use influence wisely.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-35">
+          <span class="number">35.</span>
+          <span class="title">Progress</span>
+          <span class="chinese">晉</span>
+          <span class="description">Fire above, Earth below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/35.png" alt="35"></div>
+          <div class="content">
+            <p>The sun rises above the earth.</p>
+            <p>So does the enlightened person reveal virtue.</p>
+            <p>Conditions favor able for progress.</p>
+            <p>Help others through cleverness and virtue.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-36">
+          <span class="number">36.</span>
+          <span class="title">Subtlety</span>
+          <span class="chinese">明夷</span>
+          <span class="description">Fire above, Earth below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/36.png" alt="36"></div>
+          <div class="content">
+            <p>Intelligence is hidden within the earth.</p>
+            <p>Conceal goals, but do not abandon them.</p>
+            <p>Trying conditions.</p>
+            <p>but correct persistence brings one advantage.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-37">
+          <span class="number">37.</span>
+          <span class="title">Family</span>
+          <span class="chinese">家人</span>
+          <span class="description">Wind above, Fire below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/37.png" alt="37"></div>
+          <div class="content">
+            <p>Winds of change issue from intelligent action.</p>
+            <p>The enlightened person acts in an orderly and substantial way.</p>
+            <p>Faith and loyalty must be nurtuted.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-38">
+          <span class="number">38.</span>
+          <span class="title">Contradiction</span>
+          <span class="chinese">睽</span>
+          <span class="description">Fire above, Lake below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/38.png" alt="38"></div>
+          <div class="content">
+            <p>Intelligence contradicts excess.</p>
+            <p>The enlightened person acts only in small matters.</p>
+            <p>Maintain individuality.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-39">
+          <span class="number">39.</span>
+          <span class="title">Obstacles</span>
+          <span class="chinese">蹇</span>
+          <span class="description">Water above, Mountain below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/39.png" alt="39"></div>
+          <div class="content">
+            <p>Profound movement meets immobility.</p>
+            <p>The enlightened personexamines and peifectshis own behavior to gain strength.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-40">
+          <span class="number">40.</span>
+          <span class="title">Liberation</span>
+          <span class="chinese">解</span>
+          <span class="description">Thunder above, Water below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/40.png" alt="40"></div>
+          <div class="content">
+            <p>Rain and thunder indicate profound activity.</p>
+            <p>The enlightened person finds good fortune in quick action to restore normal conditions.</p>
+            <p>Forgive others' faults.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-41">
+          <span class="number">41.</span>
+          <span class="title">Decline</span>
+          <span class="chinese">損</span>
+          <span class="description">Mountain above, lake below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/41.png" alt="41"></div>
+          <div class="content">
+            <p>Excess is held by immobility.</p>
+            <p>The enlightened person acts with moderation.</p>
+            <p>Avoid anger, develop confidence.</p>
+            <p>Sacrifice brings good fortune, freedom from error.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-42">
+          <span class="number">42.</span>
+          <span class="title">Benefit</span>
+          <span class="chinese">益</span>
+          <span class="description">Wind above, Thunder below, Benefit.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/42.png" alt="42"></div>
+          <div class="content">
+            <p>Growth brings benefit.</p>
+            <p>An enlightened person sees the good actions of his fellows.</p>
+            <p>Imitate them and correct their mistakes to make progress toward a goal.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-43">
+          <span class="number">43.</span>
+          <span class="title">Resolve</span>
+          <span class="chinese">夬</span>
+          <span class="description">Lake above, Heaven below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/43.png" alt="43"></div>
+          <div class="content">
+            <p>Excess.</p>
+            <p>Drawn into Heaven's gaze.</p>
+            <p>Produces honesty.</p>
+            <p>Do not use force, but rely on fair judges.</p>
+            <p>Know your goal.</p>
+            <p>Tell your supporters.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-44">
+          <span class="number">44.</span>
+          <span class="title">Temptation</span>
+          <span class="chinese">姤</span>
+          <span class="description">Heaven above, Wind below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/44.png" alt="44"></div>
+          <div class="content">
+            <p>Heaven's power makes : stronger the wind of change .</p>
+            <p>So too a ruler issues commands that become well known.</p>
+            <p>Do not create a relationship with powerful persons or ideas.</p>
+            <p>Exert discipline.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-45">
+          <span class="number">45.</span>
+          <span class="title">Assembly</span>
+          <span class="chinese">萃</span>
+          <span class="description">Lake above, Earth below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/45.png" alt="45"></div>
+          <div class="content">
+            <p>The earth receives excess.</p>
+            <p>Unite with others, make sacrifices, and act with correct persistence to achieve a goal.</p>
+            <p>Act with sincerity, avoid suspicion, and join with a wise leader.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-46">
+          <span class="number">46.</span>
+          <span class="title">Advancement</span>
+          <span class="chinese">升</span>
+          <span class="description">Earth above, Wind below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/46.png" alt="46"></div>
+          <div class="content">
+            <p>Gradual change.</p>
+            <p>Nourished by the receptive earth.</p>
+            <p>Produces a path to virtue.</p>
+            <p>The enlightened person persists in small matters to gain fortune.</p>
+            <p>Approach leaders without fear.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-47">
+          <span class="number">47.</span>
+          <span class="title">Adversity</span>
+          <span class="chinese">困</span>
+          <span class="description">Lake above, Water below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/47.png" alt="47"></div>
+          <div class="content">
+            <p>Excess lacks profundity.</p>
+            <p>The enlightened person gains progress through courage.</p>
+            <p>Adversity needs risks to achieve fortune.</p>
+            <p>Speaking alone is uneffective.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-48">
+          <span class="number">48.</span>
+          <span class="title">Insight</span>
+          <span class="chinese">井</span>
+          <span class="description">Water above, Wind below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/48.png" alt="48"></div>
+          <div class="content">
+            <p>Profound penetration and change.</p>
+            <p>Truth is never exhausted, yet never the same.</p>
+            <p>The enlightened person gains insight into truth and assists others to achieve it.</p>
+            <p>If the truth is not heeded, bad fortune follows.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-49">
+          <span class="number">49.</span>
+          <span class="title">Change</span>
+          <span class="chinese">革</span>
+          <span class="description">Lake above, Fire below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/49.png" alt="49"></div>
+          <div class="content">
+            <p>Intelligent consciousness amid excess produces change.</p>
+            <p>The enlightened person appreciates past experience and present opportunity.</p>
+            <p>Confidence and progress only after change is past.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-50">
+          <span class="number">50.</span>
+          <span class="title">Order</span>
+          <span class="chinese">鼎</span>
+          <span class="description">Fire above, Wind below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/50.png" alt="50"></div>
+          <div class="content">
+            <p>Intelligence combined with penetration makes progress and good fortune.</p>
+            <p>The wise person aligns himself with the established order.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-51">
+          <span class="number">51.</span>
+          <span class="title">Shock</span>
+          <span class="chinese">震</span>
+          <span class="description">Thunder above, Thunder below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/51.png" alt="51"></div>
+          <div class="content">
+            <p>Repeated activity produces sudden surprise and fear.</p>
+            <p>The enlightened person seeks to improve himself and take advantage of the unpredictable.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-52">
+          <span class="number">52.</span>
+          <span class="title">Meditation</span>
+          <span class="chinese">艮</span>
+          <span class="description">Mountain above, Mountain below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/52.png" alt="52"></div>
+          <div class="content">
+            <p>Tranquility upon tranquility.</p>
+            <p>The enlightened person turns his back upon the larger situation and loses self awareness.</p>
+            <p>Should he not notice anyone else, there is no error.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-53">
+          <span class="number">53.</span>
+          <span class="title">Development</span>
+          <span class="chinese">漸</span>
+          <span class="description">Wind above, Mountain below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/53.png" alt="53"></div>
+          <div class="content">
+            <p>Penetrating change moves the immobile mountain.</p>
+            <p>The enlightened person improves life through good conduct and correct persistence.</p>
+            <p>Marriage brings good fortune.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-54">
+          <span class="number">54.</span>
+          <span class="title">Passivity</span>
+          <span class="chinese">歸妹</span>
+          <span class="description">Thunder above, Lake below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/54.png" alt="54"></div>
+          <div class="content">
+            <p>Action above, excess below.</p>
+            <p>The enlightened person in current difficulty takes no action but considers the near future.</p>
+            <p>Seek no goal.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-55">
+          <span class="number">55.</span>
+          <span class="title">Peaking intelligence</span>
+          <span class="chinese">豐</span>
+          <span class="description">Thunder above, Fire below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/55.png" alt="55"></div>
+          <div class="content">
+            <p>Intelligence combined with activity.</p>
+            <p>This is the zenith of achievement.</p>
+            <p>The enlightened person trusts his own judgment and makes progress.</p>
+            <p>Do not fear decline, but shine like the sun.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-56">
+          <span class="number">56.</span>
+          <span class="title">Travel</span>
+          <span class="chinese">旅</span>
+          <span class="description">Fire above, Mountain below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/56.png" alt="56"></div>
+          <div class="content">
+            <p>Illumination upon the quiet mountain makes conditions favorable for travel.</p>
+            <p>The wise person is clear-minded and not detained by disputes.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-57">
+          <span class="number">57.</span>
+          <span class="title">Influence</span>
+          <span class="chinese">巽</span>
+          <span class="description">Wind above, Wind below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/57.png" alt="57"></div>
+          <div class="content">
+            <p>Penetrating change above and below.</p>
+            <p>The enlightened person acts gradually and only toward small goals.</p>
+            <p>Wait and consider larger perspectives.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-58">
+          <span class="number">58.</span>
+          <span class="title">Encouragement</span>
+          <span class="chinese">兌</span>
+          <span class="description">Lake above, Lake below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/58.png" alt="58"></div>
+          <div class="content">
+            <p>Openness and excess above and below.</p>
+            <p>The wise person exchanges ideas with others to find cooperation.</p>
+            <p>Progress and advantage in correct persistence.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-59">
+          <span class="number">59.</span>
+          <span class="title">Reunion</span>
+          <span class="chinese">渙</span>
+          <span class="description">Wind above, Water below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/59.png" alt="59"></div>
+          <div class="content">
+            <p>Gradual change above the profound water.</p>
+            <p>Rulers meet with their subordinates.</p>
+            <p>Advantage in cooperation, correct persistence.</p>
+            <p>and the company offellows.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-60">
+          <span class="number">60.</span>
+          <span class="title">Limitation</span>
+          <span class="chinese">節</span>
+          <span class="description">Lake below, Water above.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/60.png" alt="60"></div>
+          <div class="content">
+            <p>Profundity is held in check by excess.</p>
+            <p>The wise person develops sound restraints and decides proper conduct.</p>
+            <p>Extreme limitation, though, is no virtue.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-61">
+          <span class="number">61.</span>
+          <span class="title">Understanding</span>
+          <span class="chinese">中孚</span>
+          <span class="description">Wind above, Lake below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/61.png" alt="61"></div>
+          <div class="content">
+            <p>Penetrating change above the open lake.</p>
+            <p>From a distance the wise person gains understanding.</p>
+            <p>Moderate disputes.</p>
+            <p>and must avoid rigidity.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-62">
+          <span class="number">62.</span>
+          <span class="title">Attention to detail</span>
+          <span class="chinese">小過</span>
+          <span class="description">Thunder above, Mountain below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/62.png" alt="62"></div>
+          <div class="content">
+            <p>As the mountain remains tranquil in activity, so the wise person conducts himself with dignity and
+              control.</p>
+            <p>Be remorseful in losses and frugal in expenses.</p>
+            <p>When birds fly too high, none hear their song.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-63">
+          <span class="number">63.</span>
+          <span class="title">Precaution</span>
+          <span class="chinese">既濟</span>
+          <span class="description">Water above, Fire below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/63.png" alt="63"></div>
+          <div class="content">
+            <p>In consciousness is bred profound difficulty.</p>
+            <p>The enlightened person defends against forthcoming adversity.</p>
+            <p>Progress only in small matters.</p>
+            <p>Confusion is imminent.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary id="hex-64">
+          <span class="number">64.</span>
+          <span class="title">Vigilance</span>
+          <span class="chinese">未濟</span>
+          <span class="description">Fire above, Water below.</span>
+          <span class="chevron">▲</span>
+        </summary>
+        <div class="panel">
+          <div class="hexagram"><img src="64 hexagram icon/64.png" alt="64"></div>
+          <div class="content">
+            <p>Consciousness above the difficult water.</p>
+            <p>The wise person attends his position and progress carefully.</p>
+            <p>Progress with great vigilance.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </main>
+
+  <div id="about-panel">
+    <div class="about-sheet">
+      <button class="about-close">
+        <a href="#">×</a>
+      </button>
+
+      <div class="about-content">
+        <h1>About</h1>
+        <h2>About I Ching</h2>
+        <p>For countless centuries emperor and peasant, scholar and unlearned alike have sought to understand the
+          timeless wisdom and eerie divinations of the I Ching, translated, the Book of Changes. Using the simple tools
+          of three coins, one can seek insight from the I Chlng regarding whatever question is on one's heart.</p>
+
+        <h2>About this website</h2>
+        <p>This website is an experiment in turning a book into a living website. It is built with HTML, CSS, and
+          JavaScript. The design of this website reflect my own reading of the original <span class="chinese">易经</span> together with the translation
+          by Richard Wilhelm and Cary F. Baynes and the modern commentary known as Windwalker I Ching.</p>
+
+        <h2>Using this website</h2>
+        <p>This website is used to navigate the content of the I Ching, to access hexagrams quickly, and to interact
+          with the text in a simple, direct way. An interactive section allows coins to be tossed to form a hexagram,
+          providing a straightforward and interactive experience of the consultation process.</p>
+
+        <h2>Credit</h2>
+        <p>Credits for source texts include the original <span class="chinese">易经</span>, the I Ching translation by Richard Wilhelm and Cary F.
+          Baynes, and the Windwalker I Ching commentary.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="container">
+    <small>&copy; <time id="year">2025</time> Book to Website Project</small>
+  </footer>
+
+  <script>
+    (function (d) {
+      var config = {
+        kitId: 'vun0iio',
+        scriptTimeout: 3000,
+        async: true
+      },
+        h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+    })(document);
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash;
+    if (!hash) return;
+
+    const target = document.querySelector(hash);
+    if (!target) return;
+
+      if (target.tagName.toLowerCase() === 'details') {
+        target.open = true;
+
+        const headerOffset = 100;
+        const rect = target.getBoundingClientRect();
+        const offsetTop = window.scrollY + rect.top - headerOffset;
+
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      } else {
+        const details = target.closest('details');
+        if (details) {
+          details.open = true;
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  </script>
+
+
+</body>
+
+</html>
